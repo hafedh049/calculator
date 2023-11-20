@@ -65,7 +65,7 @@ void delete_tree(TreeNode **root)
     }
 }
 
-void deleteNode(TreeNode **root, int key)
+void deleteNode(TreeNode **root, char *key)
 {
     if (*root == NULL)
         return;
