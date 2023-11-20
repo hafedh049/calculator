@@ -83,7 +83,7 @@ TreeNode* buildExpressionTree(LinkedList *expression, int start, int end) {
     if (index == -1)
         return createNode(get(expression,start));
 
-    TreeNode* root = createNode(expression[index]);
+    TreeNode* root = createNode(get(expression,index));
     root->left = buildExpressionTree(expression, start, index - 1);
     root->right = buildExpressionTree(expression, index + 1, end);
 
