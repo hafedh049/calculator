@@ -28,32 +28,14 @@ void postorderTraversal(TreeNode *root)
     printf("\e[1;32m%d \e[1;33m-> \e[0m", root->data);
 }
 
-TreeNode *createNode()
+TreeNode *createNode(char *data)
 {
     struct TreeNode *newNode = (TreeNode *)malloc(sizeof(TreeNode));
-    newNode->data = "";
+    newNode->data = data;
     newNode->left = NULL;
     newNode->right = NULL;
 
     return newNode;
-}
-
-void insert(TreeNode **root, char *value)
-{
-
-    if (!(*root))
-    {
-        TreeNode *tmp = NULL;
-        tmp = (TreeNode *)malloc(sizeof(TreeNode));
-        tmp->left = tmp->right = NULL;
-        tmp->data = value;
-        *root = tmp;
-        return;
-    }
-    if (value < (*root)->data)
-        insert(&((*root)->left), value);
-    else if (value > (*root)->data)
-        insert(&((*root)->right), value);
 }
 
 void delete_tree(TreeNode **root)
@@ -64,21 +46,6 @@ void delete_tree(TreeNode **root)
         delete_tree(&(*root)->right);
         free((*root));
     }
-}
-
-void printTree(TreeNode* root, int space) {
-    if (root == NULL) return;
-
-    space += 5;
-
-    printTree(root->right, space);
-
-    printf("\n");
-    for (int i = 5; i < space; i++)
-        printf(" ");
-    printf("\e[1;32m%d\e[0m", root->data);
-
-    printTree(root->left, space);
 }
 
 int isOperator(char *c) {
@@ -113,9 +80,8 @@ TreeNode* buildExpressionTree(LinkedList *expression, int start, int end) {
 
     int index = findLowestPrecedence(expression, start, end);
 
-    if (index == -1) {
+    if (index == -1)
         return createNode(get(expression,start));
-    }
 
     TreeNode* root = createNode(expression[index]);
     root->left = buildExpressionTree(expression, start, index - 1);
