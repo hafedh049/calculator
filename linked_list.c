@@ -47,35 +47,33 @@ void show(LinkedList list)
     }
 }
 
-char *pop(LinkedList *list, char *item) {
+char *pop(LinkedList *list, char *item)
+{
     assert(!isEmpty(*list));
-
-    if (strcmp(list->head->data, item) == 0) {
-        return popFirst(list);
-    }
 
     Node *prev = NULL;
     Node *current = list->head;
 
-    while (current != NULL && strcmp(current->data, item) != 0) {
+    while (current != NULL && strcmp(current->data, item) != 0)
+    {
         prev = current;
         current = current->next;
     }
 
-    if (current != NULL) {
+    if (current != NULL)
+    {
         char *value = current->data;
 
-        if (prev != NULL) {
+        if (prev != NULL)
             prev->next = current->next;
-        } else {
+        else
             list->head = current->next;
-        }
 
         free(current);
         return value;
-    } else
+    }
+    else
         return NULL;
-    
 }
 
 char *get(LinkedList *list, int index)
