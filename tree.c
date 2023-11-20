@@ -119,7 +119,7 @@ int countElements(TreeNode* root) {
 }
 
 int isOperator(char *c) {
-    return (strcmp(c,'+')    || c == '-' || c == '*' || c == '/');
+    return (!strcmp(c,"+") || !strcmp(c,"-") || !strcmp(c,"*") || !strcmp(c,"/"));
 }
 
 int findLowestPrecedence(char* expression, int start, int end) {
