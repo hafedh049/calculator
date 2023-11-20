@@ -66,3 +66,19 @@ char *pop(LinkedList *list, char *item)
     else
         return -1;
 }
+
+char *get(LinkedList list, int index)
+{
+    assert(!isEmpty(list));
+    int counter = -1;
+    Node *head = list.head;
+    while (head)
+    {
+        counter++;
+        if (counter == index)
+            break;
+        head = head->next;
+    }
+    assert(counter == index);
+    return head->data;
+}
