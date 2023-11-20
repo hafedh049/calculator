@@ -58,7 +58,7 @@ int findLowestPrecedence(LinkedList *expression, int start, int end) {
 
     for (int i = start; i <= end; i++) {
         if (isOperator(get(expression,i))) {
-            int prec = (get(expression,i) == '+' || get(expression,i) == '-') ? 1 : 2;
+            int prec = (!strcmp(get(expression,i),"+") || !strcmp(get(expression,i),"-")) ? 1 : 2;
             if (prec <= lowestPrec) {
                 lowestPrec = prec;
                 lowestIndex = i;
