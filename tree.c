@@ -55,18 +55,6 @@ void insert(TreeNode **root, int value)
         insert(&((*root)->right), value);
 }
 
-TreeNode *search(TreeNode *root, int value)
-{
-    if (!(root))
-        return NULL;
-    if (value == root->data)
-        return root;
-    else if (value < root->data)
-        search(root->left, value);
-    else if (value > root->data)
-        search(root->right, value);
-}
-
 void delete_tree(TreeNode **root)
 {
     if (*root)
@@ -75,17 +63,6 @@ void delete_tree(TreeNode **root)
         delete_tree(&(*root)->right);
         free((*root));
     }
-}
-
-TreeNode *findMinValueNode(TreeNode *node)
-{
-    if (node == NULL)
-        return NULL;
-
-    while (node->left != NULL)
-        node = node->left;
-
-    return node;
 }
 
 void deleteNode(TreeNode **root, int key)
@@ -139,16 +116,4 @@ int countElements(TreeNode* root) {
     if (root == NULL)
         return 0;
     return 1 + countElements(root->left) + countElements(root->right);
-}
-
-int countLeftSubtreeElements(TreeNode* root) {
-    if (root == NULL)
-        return 0;
-    return 1 + countLeftSubtreeElements(root->left);
-}
-
-int countRightSubtreeElements(TreeNode* root) {
-    if (root == NULL)
-        return 0;
-    return 1 + countRightSubtreeElements(root->right);
 }
