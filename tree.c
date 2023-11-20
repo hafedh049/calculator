@@ -27,10 +27,10 @@ void postorderTraversal(TreeNode *root)
     printf("\e[1;32m%d \e[1;33m-> \e[0m", root->data);
 }
 
-TreeNode *createNode(int value)
+TreeNode *createNode()
 {
     struct TreeNode *newNode = (TreeNode *)malloc(sizeof(TreeNode));
-    newNode->data = value;
+    newNode->data = "";
     newNode->left = NULL;
     newNode->right = NULL;
 

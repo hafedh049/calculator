@@ -4,12 +4,12 @@
 
 typedef struct TreeNode
 {
-    int data;
+    char *data;
     struct TreeNode *left;
     struct TreeNode *right;
 } TreeNode;
 
-TreeNode *createNode(int);
+TreeNode *createNode();
 
 void inorderTraversal(TreeNode *);
 

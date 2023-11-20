@@ -233,6 +233,6 @@ int main(int argc, char **argv)
 	return status;
 }*/
 
-#include "string.h"
+#include "tree.h"
 
-void main(){}
+void main(){TreeNode *nod = createNode(10);}
