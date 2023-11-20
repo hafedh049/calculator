@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "*.java": "java",
-    "assert.h": "c"
+    "assert.h": "c",
+    "stdarg.h": "c"
   }
 }
