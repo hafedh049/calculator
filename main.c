@@ -233,12 +233,11 @@ int main(int argc, char **argv)
 	return status;
 }*/
 
-#include "tree.c"
+#include "linked_list.c"
 
 void main() {
 	LinkedList *l = createLinkedList();
 	appendAll(l,3,"1","+","2");
 	show(*l);
-	TreeNode *nod = createNode("10");
-	buildExpressionTree(l,0,2);
+	
 }
