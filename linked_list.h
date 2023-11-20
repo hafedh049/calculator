@@ -16,9 +16,9 @@ typedef struct LinkedList
     int size;
 } LinkedList;
 
-
 LinkedList *createLinkedList();
 void show(LinkedList);
 void append(LinkedList *, char *);
 int isEmpty(LinkedList);
 char *pop(LinkedList *, char *);
+char *get(LinkedList, int);
