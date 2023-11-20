@@ -47,19 +47,6 @@ void show(LinkedList list)
     }
 }
 
-int search(LinkedList l, int item)
-{
-    assert(!isEmpty(l));
-    Node *head = l.head;
-    while (head)
-    {
-        if (head->data == item)
-            return 1;
-        head = head->next;
-    }
-    return 0;
-}
-
 int pop(LinkedList *list, int item)
 {
     assert(!isEmpty(*list));
