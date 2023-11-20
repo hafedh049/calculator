@@ -50,7 +50,7 @@ void clearStack(Stack *stack)
     }
 }
 
-int peekStack(Stack stack)
+char *peekStack(Stack stack)
 {
     assert(!isEmptyStack(stack));
     return stack.head->data;
