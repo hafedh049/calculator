@@ -99,3 +99,22 @@ char *getLinkedist(LinkedList *list, int index)
     assert(counter == index);
     return head->data;
 }
+
+int isValidExpression(LinkedList *expression) {
+    int operandCount = 0;
+    int operatorCount = 0;
+
+    LinkedListNode *head = expression->head;
+
+    while (head != NULL) {
+        if (strcmp(head->data, "+") == 0 || strcmp(head->data, "-") == 0 ||
+            strcmp(head->data, "*") == 0 || strcmp(head->data, "/") == 0) {
+            operatorCount++;
+        } else 
+            operandCount++;
+
+        head = head->next;
+    }
+
+    return (operandCount == (2 * operatorCount + 1));
+}
