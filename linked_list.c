@@ -71,7 +71,7 @@ char *get(LinkedList *list, int index)
 {
     assert(!isEmpty(*list));
     int counter = -1;
-    Node *head = list.head;
+    Node *head = list->head;
     while (head)
     {
         counter++;
