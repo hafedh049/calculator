@@ -7,7 +7,7 @@
 
 typedef struct Node
 {
-    int data;
+    char *data;
     struct Node *next;
     struct Node *previous;
 } Node;
@@ -21,9 +21,8 @@ typedef struct LinkedList
 
 LinkedList *createLinkedList();
 void showAllItems(LinkedList);
-void append(LinkedList *, int);
+void append(LinkedList *, char *);
 int isEmpty(LinkedList);
-int search(LinkedList, int);
+int search(LinkedList, char *);
 void appendAll(LinkedList *, int, ...);
-int pop(LinkedList *, int);
-int getSize(LinkedList, Node *);
+int pop(LinkedList *, char *);
