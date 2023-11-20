@@ -8,17 +8,17 @@ LinkedList *createLinkedList()
     return linkedList;
 }
 
-int isEmpty(LinkedList list)
+int isEmptyLinkedist(LinkedList list)
 {
     return list.head == NULL;
 }
 
-void append(LinkedList *list, char *item)
+void appendLinkedist(LinkedList *list, char *item)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = item;
     node->next = NULL;
-    if (isEmpty(*list))
+    if (isEmptyLinkedist(*list))
     {
         node->previous = NULL;
         list->head = node;
@@ -33,15 +33,15 @@ void append(LinkedList *list, char *item)
     }
 }
 
-void appendAll(LinkedList *list, int itemCount, ...)
+void appendAllLinkedist(LinkedList *list, int itemCount, ...)
 {
     va_list args;
     va_start(args, itemCount);
     for (int index = 0; index < itemCount; index++)
-        append(list, va_arg(args, char *));
+        appendLinkedist(list, va_arg(args, char *));
 }
 
-void show(LinkedList list)
+void showLinkedist(LinkedList list)
 {
     Node *head = list.head;
     printf("\033[1;0m[");
@@ -55,9 +55,9 @@ void show(LinkedList list)
     }
 }
 
-char *pop(LinkedList *list, char *item)
+char *popLinkedist(LinkedList *list, char *item)
 {
-    assert(!isEmpty(*list));
+    assert(!isEmptyLinkedist(*list));
 
     Node *prev = NULL;
     Node *current = list->head;
@@ -84,9 +84,9 @@ char *pop(LinkedList *list, char *item)
         return NULL;
 }
 
-char *get(LinkedList *list, int index)
+char *getLinkedist(LinkedList *list, int index)
 {
-    assert(!isEmpty(*list));
+    assert(!isEmptyLinkedist(*list));
     int counter = -1;
     Node *head = list->head;
     while (head)
