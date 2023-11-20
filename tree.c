@@ -90,12 +90,19 @@ int findLowestPrecedence(LinkedList* expression, int start, int end) {
     int lowestIndex = -1;
 
     Node *head = expression->head;
+    int i = 0;
 
     while (head)
     {
-        /* code */
+         if (isOperator(head->data)) {
+            int prec = (!strcmp(head->data,"+") || !strcmp(head->data,"-")) ? 1 : 2;
+            if (prec <= lowestPrec) {
+                lowestPrec = prec;
+                lowestIndex = i;
+            }
+        }
+        i += 1;
     }
-    
 
     return lowestIndex;
 }
