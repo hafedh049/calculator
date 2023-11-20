@@ -4,16 +4,16 @@
 #include <string.h>
 #include <stdarg.h>
 
-typedef struct Node
+typedef struct LinkedListNode
 {
     char *data;
-    struct Node *next;
-    struct Node *previous;
-} Node;
+    struct LinkedListNode *next;
+    struct LinkedListNode *previous;
+} LinkedListNode;
 
 typedef struct LinkedList
 {
-    Node *head;
+    LinkedListNode *head;
     int size;
 } LinkedList;
 
