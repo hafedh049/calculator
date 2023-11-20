@@ -238,7 +238,7 @@ int main(int argc, char **argv)
 
 void main() {
 	LinkedList *l = createLinkedList();
-	appendAll(l,3,"1","+","2");
-	show(*l);
+	appendAllLinkedist(l,3,"1","+","2");
+	showLinkedist(*l);
 	
 }
