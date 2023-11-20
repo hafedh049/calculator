@@ -1,5 +1,5 @@
 #include "tree.h"
-#include "linked_list.h"
+#include "linked_list.c"
 
 void inorderTraversal(TreeNode *root)
 {

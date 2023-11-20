@@ -235,4 +235,4 @@ int main(int argc, char **argv)
 
 #include "tree.c"
 
-void main(){TreeNode *nod = createNode(10);}
+void main() { TreeNode *nod = createNode("10"); }
