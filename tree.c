@@ -85,19 +85,17 @@ int isOperator(char *c) {
     return (!strcmp(c,"+") || !strcmp(c,"-") || !strcmp(c,"*") || !strcmp(c,"/"));
 }
 
-int findLowestPrecedence(char* expression, int start, int end) {
+int findLowestPrecedence(LinkedList* expression, int start, int end) {
     int lowestPrec = INT_MAX;
     int lowestIndex = -1;
 
-    for (int i = start; i <= end; i++) {
-        if (isOperator(expression[i])) {
-            int prec = (expression[i] == '+' || expression[i] == '-') ? 1 : 2;
-            if (prec <= lowestPrec) {
-                lowestPrec = prec;
-                lowestIndex = i;
-            }
-        }
+    Node *head = expression->head;
+
+    while (head)
+    {
+        /* code */
     }
+    
 
     return lowestIndex;
 }
