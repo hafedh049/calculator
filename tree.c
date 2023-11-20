@@ -117,3 +117,41 @@ int countElements(TreeNode* root) {
         return 0;
     return 1 + countElements(root->left) + countElements(root->right);
 }
+
+int isOperator(char c) {
+    return (c == '+' || c == '-' || c == '*' || c == '/');
+}
+
+int findLowestPrecedence(char* expression, int start, int end) {
+    int lowestPrec = INT_MAX;
+    int lowestIndex = -1;
+
+    for (int i = start; i <= end; i++) {
+        if (isOperator(expression[i])) {
+            int prec = (expression[i] == '+' || expression[i] == '-') ? 1 : 2;
+            if (prec <= lowestPrec) {
+                lowestPrec = prec;
+                lowestIndex = i;
+            }
+        }
+    }
+
+    return lowestIndex;
+}
+
+TreeNode* buildExpressionTree(char* expression, int start, int end) {
+    if (start > end)
+        return NULL;
+
+    int index = findLowestPrecedence(expression, start, end);
+
+    if (index == -1) {
+        return createNode(expression[start]);
+    }
+
+    TreeNode* root = createNode(expression[index]);
+    root->left = buildExpressionTree(expression, start, index - 1);
+    root->right = buildExpressionTree(expression, index + 1, end);
+
+    return root;
+}
