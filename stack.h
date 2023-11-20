@@ -19,4 +19,4 @@ void pushStack(Stack *, char *);
 char *popStack(Stack *);
 void showStack(Stack);
 void clearStack(Stack *);
-int peekStack(Stack);
+char *peekStack(Stack);
