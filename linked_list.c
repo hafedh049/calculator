@@ -4,6 +4,7 @@ LinkedList *createLinkedList()
 {
     LinkedList *linkedList = (LinkedList *)malloc(sizeof(LinkedList));
     linkedList->head = NULL;
+    linkedList->size = 0;
     return linkedList;
 }
 
@@ -12,7 +13,7 @@ int isEmpty(LinkedList list)
     return list.head == NULL;
 }
 
-void append(LinkedList *list, int item)
+void append(LinkedList *list, char *item)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = item;
@@ -32,15 +33,7 @@ void append(LinkedList *list, int item)
     }
 }
 
-void appendAll(LinkedList *list, int itemCount, ...)
-{
-    va_list args;
-    va_start(args, itemCount);
-    for (int index = 0; index < itemCount; index++)
-        append(list, va_arg(args, int));
-}
-
-void showAllItems(LinkedList list)
+void show(LinkedList list)
 {
     Node *head = list.head;
     printf("\033[1;0m[");
@@ -49,10 +42,9 @@ void showAllItems(LinkedList list)
         if (head->next)
             printf("\033[1;32m%d, ", head->data);
         else
-            printf("\033[1;32m%d]", head->data);
+            printf("\033[1;32m%d]\n\033[1;0m", head->data);
         head = head->next;
     }
-    printf("\033[1;0m");
 }
 
 int search(LinkedList l, int item)
