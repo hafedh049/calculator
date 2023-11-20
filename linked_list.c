@@ -100,7 +100,7 @@ char *getLinkedist(LinkedList *list, int index)
     return head->data;
 }
 
-int isValidExpression(LinkedList *expression) {
+int isValidExpressionLinkedList(LinkedList *expression) {
     int operandCount = 0;
     int operatorCount = 0;
 
