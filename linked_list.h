@@ -14,9 +14,9 @@ typedef struct Node
 typedef struct LinkedList
 {
     Node *head;
+    int size;
 } LinkedList;
 
-typedef bool (*CriteriaFunction)(int);
 
 LinkedList *createLinkedList();
 void showAllItems(LinkedList);
