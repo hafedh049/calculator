@@ -240,4 +240,5 @@ void main() {
 	appendAll(l,3,"1","+","2");
 	show(*l);
 	TreeNode *nod = createNode("10");
+	buildExpressionTree(l,0,2);
 }

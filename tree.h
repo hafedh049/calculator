@@ -17,6 +17,4 @@ void preorderTraversal(TreeNode *);
 
 void postorderTraversal(TreeNode *);
 
-void insert(TreeNode **, char *);
-
 void delete_tree(TreeNode **);
