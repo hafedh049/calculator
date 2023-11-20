@@ -33,12 +33,12 @@ void append(LinkedList *list, char *item)
     }
 }
 
-void appendAll(DoublyLinkedList *list, int itemCount, ...)
+void appendAll(LinkedList *list, int itemCount, ...)
 {
     va_list args;
     va_start(args, itemCount);
     for (int index = 0; index < itemCount; index++)
-        append(list, va_arg(args, int));
+        append(list, va_arg(args, char *));
 }
 
 void show(LinkedList list)

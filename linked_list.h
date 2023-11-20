@@ -23,4 +23,4 @@ void append(LinkedList *, char *);
 int isEmpty(LinkedList);
 char *pop(LinkedList *, char *);
 char *get(LinkedList *, int);
-void appendAll(DoublyLinkedList *, int , ...);
+void appendAll(LinkedList *, int , ...);
