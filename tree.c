@@ -114,7 +114,7 @@ TreeNode* buildExpressionTree(LinkedList *expression, int start, int end) {
     int index = findLowestPrecedence(expression, start, end);
 
     if (index == -1) {
-        return createNode(expression[start]);
+        return createNode(get(expression,start));
     }
 
     TreeNode* root = createNode(expression[index]);

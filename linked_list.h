@@ -21,4 +21,4 @@ void show(LinkedList);
 void append(LinkedList *, char *);
 int isEmpty(LinkedList);
 char *pop(LinkedList *, char *);
-char *get(LinkedList, int);
+char *get(LinkedList *, int);

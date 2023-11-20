@@ -67,7 +67,7 @@ char *pop(LinkedList *list, char *item)
         return -1;
 }
 
-char *get(LinkedList list, int index)
+char *get(LinkedList *list, int index)
 {
     assert(!isEmpty(list));
     int counter = -1;
