@@ -20,5 +20,3 @@ void postorderTraversal(TreeNode *);
 void insert(TreeNode **, char *);
 
 void delete_tree(TreeNode **);
-
-void deleteNode(TreeNode **, char *);
