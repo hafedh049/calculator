@@ -1,5 +1,5 @@
 
-#include <gtk/gtk.h>
+/*#include <gtk/gtk.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -231,4 +231,8 @@ int main(int argc, char **argv)
 	g_object_unref(app);
 
 	return status;
-}
+}*/
+
+#include "string.h"
+
+void main(){}
