@@ -65,38 +65,6 @@ void delete_tree(TreeNode **root)
     }
 }
 
-void deleteNode(TreeNode **root, char *key)
-{
-    if (*root == NULL)
-        return;
-
-    if (key < (*root)->data)
-        deleteNode(&((*root)->left), key);
-    else if (key > (*root)->data)
-        deleteNode(&((*root)->right), key);
-    else
-    {
-        if ((*root)->left == NULL)
-        {
-            TreeNode *temp = (*root)->right;
-            free(*root);
-            *root = temp;
-        }
-        else if ((*root)->right == NULL)
-        {
-            TreeNode *temp = (*root)->left;
-            free(*root);
-            *root = temp;
-        }
-        else
-        {
-            TreeNode *temp = findMinValueNode((*root)->right);
-            (*root)->data = temp->data;
-            deleteNode(&((*root)->right), temp->data);
-        }
-    }
-}
-
 void printTree(TreeNode* root, int space) {
     if (root == NULL) return;
 
