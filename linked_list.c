@@ -47,7 +47,7 @@ void show(LinkedList list)
     }
 }
 
-int pop(LinkedList *list, int item)
+char *pop(LinkedList *list, char *item)
 {
     assert(!isEmpty(*list));
     if (list->head->data == item)
