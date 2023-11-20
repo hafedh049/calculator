@@ -52,9 +52,12 @@ char *pop(LinkedList *list, char *item)
     assert(!isEmpty(*list));
     if (list->head->data == item)
         return popFirst(list);
+    
     Node *head = list->head;
+    
     while (head->next && head->next->data != item)
         head = head->next;
+    
     if (head->next)
     {
         Node *aux = head->next;
