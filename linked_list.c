@@ -66,11 +66,3 @@ char *pop(LinkedList *list, char *item)
     else
         return -1;
 }
-
-int getSize(LinkedList list, Node *head)
-{
-    if (isEmpty(list))
-        return 0;
-    if (head)
-        return 1 + getSize(list, head->next);
-}
