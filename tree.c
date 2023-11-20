@@ -87,7 +87,7 @@ int isOperator(char *c) {
 int findLowestPrecedence(char* expression, int start, int end) {
     int lowestPrec = INT_MAX;
     int lowestIndex = -1;
-
+    
     for (int i = start; i <= end; i++) {
         if (isOperator(expression[i])) {
             int prec = (expression[i] == '+' || expression[i] == '-') ? 1 : 2;
