@@ -235,4 +235,9 @@ int main(int argc, char **argv)
 
 #include "tree.c"
 
-void main() { TreeNode *nod = createNode("10"); }
+void main() {
+	LinkedList *l = createLinkedList();
+	appendAll(l,3,"1","+","2");
+	show(*l);
+	TreeNode *nod = createNode("10");
+}

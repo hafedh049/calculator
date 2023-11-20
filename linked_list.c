@@ -48,9 +48,9 @@ void show(LinkedList list)
     while (head)
     {
         if (head->next)
-            printf("\033[1;32m%d, ", head->data);
+            printf("\033[1;32m%s, ", head->data);
         else
-            printf("\033[1;32m%d]\n\033[1;0m", head->data);
+            printf("\033[1;32m%s\033[1;0m]\n", head->data);
         head = head->next;
     }
 }
