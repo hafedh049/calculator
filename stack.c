@@ -9,11 +9,11 @@ Stack* createStack()
 
 void pushStack(Stack *stack, char *item)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node));
+    StackNode *newStackNode = (StackNode *)malloc(sizeof(StackNode));
     
-    newNode->data = item;
-    newNode->next = stack->head;
-    stack->head = newNode;
+    newStackNode->data = item;
+    newStackNode->next = stack->head;
+    stack->head = newStackNode;
 }
 
 int isEmptyStack(Stack stack)
@@ -25,23 +25,23 @@ char *popStack(Stack *stack)
 {
     assert(!isEmptyStack(*stack));
 
-    Node *headReference = (*stack).head;
+    StackNode *headReference = (*stack).head;
     
     (*stack).head = (*stack).head->next;
     
-    Node *popedNode = (Node *)malloc(sizeof(Node));
+    StackNode *popedStackNode = (StackNode *)malloc(sizeof(StackNode));
     
-    popedNode->data = headReference->data;
-    popedNode->next = NULL;
+    popedStackNode->data = headReference->data;
+    popedStackNode->next = NULL;
     
     free(headReference);
     
-    return popedNode->data;
+    return popedStackNode->data;
 }
 
 void clearStack(Stack *stack)
 {
-    Node *head;
+    StackNode *head;
     while (stack->head)
     {
         head = stack->head;

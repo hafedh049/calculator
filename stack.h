@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct Node
+typedef struct StackNode
 {
     char *data;
-    struct Node *next;
-} Node;
+    struct StackNode *next;
+} StackNode;
 
 typedef struct Stack
 {
-    Node *head;
+    StackNode *head;
 } Stack;
 
 Stack *createStack();
