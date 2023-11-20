@@ -17,10 +17,8 @@ void preorderTraversal(TreeNode *);
 
 void postorderTraversal(TreeNode *);
 
-void insert(TreeNode **, int);
+void insert(TreeNode **, char *);
 
 void delete_tree(TreeNode **);
 
-void deleteNode(TreeNode **, int);
-
-int countElements(TreeNode *);
+void deleteNode(TreeNode **, char *);

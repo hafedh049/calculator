@@ -37,7 +37,7 @@ TreeNode *createNode()
     return newNode;
 }
 
-void insert(TreeNode **root, int value)
+void insert(TreeNode **root, char *value)
 {
 
     if (!(*root))
@@ -110,12 +110,6 @@ void printTree(TreeNode* root, int space) {
     printf("\e[1;32m%d\e[0m", root->data);
 
     printTree(root->left, space);
-}
-
-int countElements(TreeNode* root) {
-    if (root == NULL)
-        return 0;
-    return 1 + countElements(root->left) + countElements(root->right);
 }
 
 int isOperator(char *c) {
