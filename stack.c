@@ -23,7 +23,7 @@ int isEmptyStack(Stack stack)
 
 char *popStack(Stack *stack)
 {
-    assert(!isEmpty(*stack));
+    assert(!isEmptyStack(*stack));
 
     Node *headReference = (*stack).head;
     
@@ -42,16 +42,16 @@ char *popStack(Stack *stack)
 void clearStack(Stack *stack)
 {
     Node *head;
-    while ((*stack).head)
+    while (stack->head)
     {
-        head = (*stack).head;
-        (*stack).head = (*stack).head->next;
+        head = stack->head;
+        stack->head = stack->head->next;
         free(head);
     }
 }
 
 int peekStack(Stack stack)
 {
-    assert(!isEmpty(stack));
+    assert(!isEmptyStack(stack));
     return stack.head->data;
 }
