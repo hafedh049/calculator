@@ -18,14 +18,8 @@ void postorderTraversal(TreeNode *);
 
 void insert(TreeNode **, int);
 
-TreeNode *search(TreeNode *, int);
-
 void delete_tree(TreeNode **);
 
 void deleteNode(TreeNode **, int);
 
 int countElements(TreeNode *);
-
-int countLeftSubtreeElements(TreeNode *);
-
-int countRightSubtreeElements(TreeNode *);
