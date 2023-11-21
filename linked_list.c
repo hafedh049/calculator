@@ -137,20 +137,31 @@ int isValidInfixExpression(LinkedList *expression)
     return 1;
 }
 
-int **getMaxWeight(LinkedList *expression){
+int *getMaxWeight(LinkedList *expression){
     
     int indx = 0,max = 0;
     LinkedListNode *head = expression->head;
 
+    int *aux = (int *)malloc(2 * sizeof(int));
+
     while (head)
     {
         if(head->weight == 2)
-            return 2;
+        {
+            aux[0] = indx;
+            aux[1] = 2;
+            return aux;
+        }
+            
         else if(head->weight > max)
             max = head->weight;
         head = head->next;    
     }
-    return max;
+
+    aux[0] = indx;
+    aux[1] = max;        
+
+    return aux;
 }
 
 char *calculateResult(LinkedList *expression){
