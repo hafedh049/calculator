@@ -199,9 +199,12 @@ void updateState(LinkedList *expression, int targetIndx){
 
     double res = 0;
 
-    if(!strcmp(item->data,"*")){
+    if(!strcmp(item->data,"*"))
         res = convertToDouble(item->previous->data) * convertToDouble(item->next->data);
-    }
+    else
+        res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
+
+    
 }
 
 char *calculateResult(LinkedList *expression){
