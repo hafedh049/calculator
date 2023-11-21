@@ -141,13 +141,14 @@ int isValidInfixExpression(LinkedList *expression)
     while (current)
     {
         prev = current;
-        printf("%d\n",isNumber(prev->data));
         current = current->next;
+        
         if (isNumber(prev->data) && current == NULL)
             return 1;
         else if ((!isNumber(prev->data) && current == NULL) ||
                  (isNumber(prev->data) && isNumber(current->data)) ||
-                ((!isNumber(prev->data) && !isNumber(current->data))))
+                 ((!isNumber(prev->data) && !isNumber(current->data)))
+                )
             return 0;
     }
 
