@@ -113,6 +113,7 @@ char *popLastLinkedList(LinkedList *list)
     result = head->next->data;
 
     free(head->next);
+    
     head->next = NULL;
 
     return result;
