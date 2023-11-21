@@ -141,7 +141,7 @@ int isValidInfixExpression(LinkedList *expression)
     {
         prev = current;
         current = current->next;
-        
+
         if (isNumber(prev->data) && current == NULL)
             return 1; 
         else if((!isNumber(prev->data) && current == NULL) || (isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
@@ -203,9 +203,12 @@ void updateState(LinkedList *expression, int targetIndx){
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
 
     
-
+    
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
+
+    if(op1)
+
 }
 
 char *calculateResult(LinkedList *expression){
