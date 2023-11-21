@@ -59,6 +59,7 @@
   "files.associations": {
     "*.java": "java",
     "assert.h": "c",
-    "stdarg.h": "c"
+    "stdarg.h": "c",
+    "ctype.h": "c"
   }
 }

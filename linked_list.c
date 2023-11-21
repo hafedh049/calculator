@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include "ctype.h"
 
 LinkedList *createLinkedList()
 {
@@ -100,35 +101,52 @@ char *getLinkedist(LinkedList *list, int index)
     return head->data;
 }
 
-int isValidExpressionLinkedList(LinkedList *expression) {
+int isNumber(char * num){
+    int i = 0;
+    while (num[i])
+    {
+       if(num[i] == '-' || num[i] == '+') {
+        i += 1;
+        continue;
+       }
+       else if(isdigit() num[i]){
+
+       }
+       i += 1;
+    }
+    
+}
+
+isValidInfixExpression(LinkedList* expression) {
     int operandCount = 0;
     int operatorCount = 0;
-    int lastWasOperator = 1;
-
+    int length = strlen(expression);
 
     LinkedListNode *head = expression->head;
 
-     while (head != NULL) {
-        if (strcmp(head->data, "+") == 0 || strcmp(head->data, "-") == 0 ||
-            strcmp(head->data, "*") == 0 || strcmp(head->data, "/") == 0) {
-            operatorCount++;
-            lastWasOperator = 1;
-        } else {
-            // Check for unary minus
-            if ( '-' == head->data[0] && lastWasOperator) {
-                head = head->next;
-                if (head == NULL || !isdigit(head->data[0])) {
-                    return 0; // Unary minus without operand or non-digit operand
-                }
-            } else if (!isdigit(head->data[0])) {
-                return 0; // Non-digit operand
-            }
-            operandCount++;
-            lastWasOperator = 0;
-        }
+    while (head)
+    {
+        /* code */
+    }
+    
 
-        head = head->next;
+    for (int i = 0; i < length; i++) {
+        if (isdigit(expression[i])) {
+            operandCount++;
+            // Handle multi-digit operands
+            while (i < length && isdigit(expression[i])) {
+                i++;
+            }
+            i--; // Adjust the index
+        } else if (expression[i] == '+' || expression[i] == '-' ||
+                   expression[i] == '*' || expression[i] == '/') {
+            operatorCount++;
+        } else if (expression[i] != ' ') {
+            // Invalid character found
+            return false;
+        }
     }
 
-    return (operandCount == (operatorCount + 1));
+    // Check if the counts follow infix rules
+    return operandCount == operatorCount + 1;
 }
