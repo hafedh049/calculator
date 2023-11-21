@@ -120,7 +120,7 @@ LinkedListNode *getLinkedListNode(LinkedList *list, int index)
 int isNumber(char *num)
 {
     char* endPtr;
-    
+
     strtod(num, &endPtr);
 
     if (endPtr == num || *endPtr != '\0')
@@ -201,6 +201,8 @@ void updateState(LinkedList *expression, int targetIndx){
     else
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
 
+    LinkedListNode *op1 = item->previous;
+    LinkedListNode *op2 = item->next;
     
 }
 
