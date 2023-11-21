@@ -101,12 +101,28 @@ char *getLinkedList(LinkedList *list, int index)
     return head->data;
 }
 
+LinkedListNode *getLinkedListNode(LinkedList *list, int index)
+{
+    assert(!isEmptyLinkedList(*list));
+    int counter = -1;
+    LinkedListNode *head = list->head;
+    while (head)
+    {
+        counter++;
+        if (counter == index)
+            break;
+        head = head->next;
+    }
+    assert(counter == index);
+    return head;
+}
+
 int isNumber(char *num)
 {
     int i = 0;
     while (num[i])
     {
-        if ((*(num + i) == '-' || *(num + i) == '+') && (*(num + i + 1)))
+        if ((*(num + i) == '-') && (*(num + i + 1)))
         {
             i += 1;
             continue;
@@ -166,7 +182,7 @@ int *getMaxWeight(LinkedList *expression){
 
 void updateState(LinkedList *expression, int targetIndx){
 
-    
+
 
 }
 
