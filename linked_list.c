@@ -15,10 +15,26 @@ int isEmptyLinkedList(LinkedList list)
     return list.head == NULL;
 }
 
+int isNumber(char *num)
+{
+    char *endPtr;
+
+    strtod(num, &endPtr);
+
+    if (endPtr == num || *endPtr != '\0')
+        return 0;
+
+    if (num[0] == '-' && isdigit(num[1]))
+        return 1;
+
+    return 1;
+}
+
 void appendLinkedList(LinkedList *list, char *item)
 {
     LinkedListNode *linkedListNode = (LinkedListNode *)malloc(sizeof(LinkedListNode));
     linkedListNode->data = item;
+    if
     linkedListNode->next = NULL;
     if (isEmptyLinkedList(*list))
     {
@@ -116,21 +132,6 @@ LinkedListNode *getLinkedListNode(LinkedList *list, int index)
     }
     assert(counter == index);
     return head;
-}
-
-int isNumber(char *num)
-{
-    char *endPtr;
-
-    strtod(num, &endPtr);
-
-    if (endPtr == num || *endPtr != '\0')
-        return 0;
-
-    if (num[0] == '-' && isdigit(num[1]))
-        return 1;
-
-    return 1;
 }
 
 int isValidInfixExpression(LinkedList *expression)
@@ -265,14 +266,13 @@ char *calculateResult(LinkedList *expression)
     {
 
         int *aux = getMaxWeight(tmp);
+        printf("%d\n",*(aux +1));
 
         while (*(aux + 1) > 1)
         {
             updateState(&tmp, *aux);
             aux = getMaxWeight(tmp);
         }
-
-        
 
         Stack *operandStack = createStack();
         Stack *operatorStack = createStack();
@@ -288,6 +288,8 @@ char *calculateResult(LinkedList *expression)
             
             head = head->next;
         }
+
+        printf("%s\n",peekStack(*operandStack));
 
         free(tmp);
 
