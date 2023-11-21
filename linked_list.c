@@ -263,6 +263,8 @@ char *calculateResult(LinkedList *expression)
 
         while (*(aux + 1) > 1)
         {
+            updateState(expression,*aux);
+            aux = getMaxWeight(expression);
         }
 
         return;
