@@ -34,7 +34,7 @@ void appendLinkedList(LinkedList *list, char *item)
 {
     LinkedListNode *linkedListNode = (LinkedListNode *)malloc(sizeof(LinkedListNode));
     linkedListNode->data = item;
-    if
+    linkedListNode->weight = isNumber(item) ? 0 : strcmp(item,"+") || strcmp(item,"-") ? 1 : 2;
     linkedListNode->next = NULL;
     if (isEmptyLinkedList(*list))
     {
@@ -49,6 +49,7 @@ void appendLinkedList(LinkedList *list, char *item)
         linkedListNode->previous = last;
         last->next = linkedListNode;
     }
+    list->size += 1;
 }
 
 void appendAllLinkedList(LinkedList *list, int itemCount, ...)
@@ -96,6 +97,7 @@ char *popLinkedList(LinkedList *list, char *item)
             list->head = current->next;
 
         free(current);
+        list->size -=1 ;
         return value;
     }
     else
