@@ -36,7 +36,7 @@ static void calculate(GtkButton *button, gpointer data)
 
 	const gchar *text = gtk_button_get_label(button);
 
-	if ((strcmp("+", text) == 0) || (strcmp("-", text) == 0) || (strcmp("/", text) == 0) || (strcmp("x", text) == 0) || (strcmp("=", text) == 0))
+	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("=", text))
 	{
 
 		num[count] = atof(input_buffer);
