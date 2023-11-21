@@ -25,3 +25,4 @@ int isEmptyLinkedList(LinkedList);
 char *popLinkedList(LinkedList *, char *);
 char *getLinkedList(LinkedList *, int);
 void appendAllLinkedList(LinkedList *, int, ...);
+char* toString(LinkedList*);

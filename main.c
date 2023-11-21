@@ -10,7 +10,7 @@ typedef struct Calculator
 {
 	GtkWidget *window;
 	GtkWidget *grid;
-	GtkWidget *button[17];
+	GtkWidget *button[16];
 } Calculator;
 
 GtkWidget *box;
@@ -43,8 +43,8 @@ static void calculate(GtkButton *button, gpointer data)
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		clearLinkedList(holder);
 	}
-	else if(strcmp(".", text) == 0){
-		getLastLinkedList
+	else{
+		appendLinkedList(holder,text);
 	}
 }
 

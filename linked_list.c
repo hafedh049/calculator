@@ -134,6 +134,35 @@ LinkedListNode *getLinkedListNode(LinkedList *list, int index)
     return head;
 }
 
+char *toString(LinkedList *list)
+{
+    if (list == NULL || list->head == NULL || list->size == 0)
+        return "";
+
+    char *result = NULL;
+    size_t resultSize = 0;
+
+    LinkedListNode *current = list->head;
+    while (current != NULL)
+    {
+        size_t dataSize = strlen(current->data);
+
+        result = (char *)realloc(result, resultSize + dataSize + 1); // +1 for null terminator
+        if (result == NULL)
+        {
+            printf("Memory allocation failed");
+            exit(1);
+        }
+
+        strcpy(result + resultSize, current->data); // Append the current node's data to the result string
+        resultSize += dataSize;
+
+        current = current->next;
+    }
+
+    return result;
+}
+
 int isValidInfixExpression(LinkedList *expression)
 {
 
