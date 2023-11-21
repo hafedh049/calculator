@@ -32,6 +32,8 @@ static void calculate(GtkButton *button, gpointer data)
 			appendLinkedList(holder,"/");
 		if (strcmp("x", text) == 0)
 			appendLinkedList(holder,"*");
+
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
 	else if(strcmp("=", text) == 0)
 	{
@@ -44,8 +46,12 @@ static void calculate(GtkButton *button, gpointer data)
 		clearLinkedList(holder);
 	}
 	else{
-		if(getl)
-		appendLinkedList(holder,text);
+		if(isNumber(getLastLinkedList(holder)->data))
+			strcat(getLastLinkedList(holder)->data,text);
+		else
+			appendLinkedList(holder,text);
+		
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
 }
 
