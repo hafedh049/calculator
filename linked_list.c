@@ -226,9 +226,9 @@ void updateState(LinkedList **expression, int targetIndx)
         if (op1->previous == NULL)
         {
             (*expression)->head = item;
-            free(op1);
             item->previous = NULL;
             item->next = op2->next;
+            free(op1);
             free(op2);
         }
         else if (op2->next == NULL)
@@ -239,7 +239,7 @@ void updateState(LinkedList **expression, int targetIndx)
             free(op2);
         }
         else{
-            
+
         }
     }
 }
