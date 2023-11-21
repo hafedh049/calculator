@@ -259,17 +259,17 @@ void updateState(LinkedList **expression, int targetIndx)
 char *calculateResult(LinkedList *expression)
 {
 
-    LinkedList tmp = *expression;
+    LinkedList *tmp = expression;
 
-    if (isValidInfixExpression(&tmp))
+    if (isValidInfixExpression(tmp))
     {
 
-        int *aux = getMaxWeight(&tmp);
+        int *aux = getMaxWeight(tmp);
 
         while (*(aux + 1) > 1)
         {
             updateState(&tmp, *aux);
-            aux = getMaxWeight(&tmp);
+            aux = getMaxWeight(tmp);
         }
 
         
@@ -277,7 +277,7 @@ char *calculateResult(LinkedList *expression)
         Stack *operandStack = createStack();
         Stack *operatorStack = createStack();
 
-        LinkedListNode *head = tmp.head;
+        LinkedListNode *head = tmp->head;
 
         while (head)
         {
@@ -289,7 +289,7 @@ char *calculateResult(LinkedList *expression)
             head = head->next;
         }
 
-        free(&tmp);
+        free(tmp);
 
         double result = convertToDouble(popStack(operandStack));
 
