@@ -137,9 +137,9 @@ int isValidInfixExpression(LinkedList *expression)
     return 1;
 }
 
-int getMaxWeight(LinkedList *expression){
+int **getMaxWeight(LinkedList *expression){
     
-    int max = 0;
+    int indx = 0,max = 0;
     LinkedListNode *head = expression->head;
 
     while (head)
@@ -158,10 +158,13 @@ char *calculateResult(LinkedList *expression){
 
         double result = 0;
 
-        wh
+        while (getMaxWeight(expression) > 1)
+        {
+
+        }
 
         return ;
     }
     else
-        return "INVALID OPERATION"
+        return "INVALID OPERATION";
 }
