@@ -130,7 +130,7 @@ int isValidInfixExpression(LinkedList *expression)
         current = current->next;
         if (isNumber(prev->data) && current == NULL)
             return 1; 
-        else if((isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
+        else if((!isNumber(prev->data) && current == NULL) || (isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
             return 0;
     }
     
