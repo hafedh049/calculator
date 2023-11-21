@@ -240,4 +240,5 @@ void main() {
 	appendAllLinkedList(l,1,"-1");
 	showLinkedList(*l);
 	printf("%d\n",isValidInfixExpression(l));
+	printf("%s\n",);
 }
