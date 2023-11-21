@@ -126,21 +126,11 @@ isValidInfixExpression(LinkedList *expression)
     int length = strlen(expression);
 
     for (int i = 0; i < length; i++)
-    {
         if (isNumber(getLinkedist(expression, i)))
             operandCount++;
         else if (!strcmp(getLinkedist(expression, i), "+") || !strcmp(getLinkedist(expression, i), "-") ||
                  !strcmp(getLinkedist(expression, i), "*") || !strcmp(getLinkedist(expression, i), "/"))
-        {
             operatorCount++;
-        }
-        else if (expression[i] != ' ')
-        {
-            // Invalid character found
-            return false;
-        }
-    }
 
-    // Check if the counts follow infix rules
     return operandCount == operatorCount + 1;
 }
