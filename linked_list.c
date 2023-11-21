@@ -90,19 +90,20 @@ void clearLinkedList(LinkedList *list)
     list->head = NULL;
 }
 
-int popLastLinkedList(LinkedList *list)
+char *popLastLinkedList(LinkedList *list)
 {
     assert(!isEmpty(*list));
 
     Node *head = list->head;
 
-    int result;
+    char *result;
 
     if (!head->next)
     {
         result = head->data;
-        list->head = NULL;
         free(head);
+        list->head = NULL;
+        
         return result;
     }
 
