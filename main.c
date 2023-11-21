@@ -234,7 +234,6 @@ int main(int argc, char **argv)
 }*/
 
 #include "linked_list.c"
-#include "stack.c"
 
 void main() {
 	LinkedList *l = createLinkedList();
