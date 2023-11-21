@@ -231,12 +231,15 @@ void updateState(LinkedList **expression, int targetIndx)
             item->next = op2->next;
             free(op2);
         }
-        if (op2->next == NULL)
+        else if (op2->next == NULL)
         {
             op1->previous->next = item;
             item->previous = op1->previous;
             item->next = op2->next;
             free(op2);
+        }
+        else{
+            
         }
     }
 }
