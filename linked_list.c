@@ -101,23 +101,26 @@ char *getLinkedist(LinkedList *list, int index)
     return head->data;
 }
 
-int isNumber(char * num){
+int isNumber(char *num)
+{
     int i = 0;
     while (num[i])
     {
-       if(num[i] == '-' || num[i] == '+') {
-        i += 1;
-        continue;
-       }
-       else if(isdigit() num[i]){
+        if (num[i] == '-' || num[i] == '+')
+        {
+            i += 1;
+            continue;
+        }
+        else if (!isdigit(num[i]))
+            return 0;
 
-       }
-       i += 1;
+        i += 1;
     }
-    
+    return 1;
 }
 
-isValidInfixExpression(LinkedList* expression) {
+isValidInfixExpression(LinkedList *expression)
+{
     int operandCount = 0;
     int operatorCount = 0;
     int length = strlen(expression);
@@ -128,20 +131,26 @@ isValidInfixExpression(LinkedList* expression) {
     {
         /* code */
     }
-    
 
-    for (int i = 0; i < length; i++) {
-        if (isdigit(expression[i])) {
+    for (int i = 0; i < length; i++)
+    {
+        if (isdigit(expression[i]))
+        {
             operandCount++;
             // Handle multi-digit operands
-            while (i < length && isdigit(expression[i])) {
+            while (i < length && isdigit(expression[i]))
+            {
                 i++;
             }
             i--; // Adjust the index
-        } else if (expression[i] == '+' || expression[i] == '-' ||
-                   expression[i] == '*' || expression[i] == '/') {
+        }
+        else if (expression[i] == '+' || expression[i] == '-' ||
+                 expression[i] == '*' || expression[i] == '/')
+        {
             operatorCount++;
-        } else if (expression[i] != ' ') {
+        }
+        else if (expression[i] != ' ')
+        {
             // Invalid character found
             return false;
         }
