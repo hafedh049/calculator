@@ -92,7 +92,8 @@ void clearLinkedList(LinkedList *list)
 
 LinkedListNode *getLastLinkedList(LinkedList list)
 {
-    assert(!isEmptyLinkedList(list));
+    if(list.head == NULL)
+        return NULL;
 
     LinkedListNode *node = list.head;
 

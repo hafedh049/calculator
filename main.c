@@ -35,12 +35,12 @@ static void calculate(GtkButton *button, gpointer data)
 
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
-	else if(strcmp("=", text) == 0)
+	else if(!strcmp("=", text))
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), calculateResult(holder));
 		clearLinkedList(holder);
 	}
-	else if(strcmp("C", text) == 0)
+	else if(!strcmp("C", text))
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		clearLinkedList(holder);
