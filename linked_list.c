@@ -180,13 +180,27 @@ int *getMaxWeight(LinkedList *expression){
     return aux;
 }
 
+double convertToDouble(char* str) {
+    char* endPtr;
+    int isNegative = 0;
+    
+    if (*str == '-') {
+        isNegative = 1;
+        str++;
+    }
+    
+    double result = strtod(str, &endPtr);
+
+    return isNegative ? -result : result;
+}
+
 void updateState(LinkedList *expression, int targetIndx){
     LinkedListNode *item = getLinkedListNode(expression,targetIndx);
 
     double res = 0;
 
     if(!strcmp(item->data,"*")){
-
+        res = convertToDouble(item->previous->data) * convertToDouble(item->next->data);
     }
 }
 
