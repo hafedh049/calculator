@@ -90,7 +90,7 @@ void clearLinkedList(LinkedList *list)
     list->head = NULL;
 }
 
-char *getLast(DoublyLinkedList list)
+LinkedListNode *getLastLinkedList(LinkedList list)
 {
     assert(!isEmpty(list));
 
@@ -98,8 +98,8 @@ char *getLast(DoublyLinkedList list)
 
     while (node->next)
         node = node->next;
-        
-    return node->data;
+
+    return node;
 }
 
 char *getLinkedList(LinkedList *list, int index)

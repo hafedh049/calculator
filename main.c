@@ -44,7 +44,7 @@ static void calculate(GtkButton *button, gpointer data)
 		clearLinkedList(holder);
 	}
 	else if(strcmp(".", text) == 0){
-
+		getLastLinkedList
 	}
 }
 
