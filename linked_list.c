@@ -278,35 +278,28 @@ char *calculateResult(LinkedList *expression)
         while (head)
         {
             if (isNumber(head->data))
-            {
-                pushStack(operandStack, operand);
-            }
+                pushStack(operandStack, head->data);
             else
-            {
-                push(operatorStack, expression[i]);
-                i++;
-            }
+                push(operatorStack, head->data);
+            
+            head = head->next;
         }
 
-        int result = pop(operandStack);
+        free(tmp);
+
+        result = convertToDouble(popStack(operandStack));
         while (!isEmpty(operatorStack))
         {
-            char op = pop(operatorStack);
-            int nextOperand = pop(operandStack);
+            char *op = popStack(operatorStack);
+            double nextOperand = convertToDouble(popStack(operandStack));
 
             if (op == '+')
-            {
                 result += nextOperand;
-            }
             else if (op == '-')
-            {
                 result -= nextOperand;
-            }
         }
 
-        free(operandStack->array);
         free(operandStack);
-        free(operatorStack->array);
         free(operatorStack);
 
         return;
