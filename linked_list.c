@@ -213,7 +213,7 @@ void updateState(LinkedList **expression, int targetIndx)
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
 
-    if(op1->previous == NULL && op2->next == NULL)
+    if (op1->previous == NULL && op2->next == NULL)
     {
         item->next = NULL;
         item->previous = NULL;
@@ -221,20 +221,23 @@ void updateState(LinkedList **expression, int targetIndx)
         free(op1);
         free(op2);
     }
-    if (op1->previous == NULL)
+    else
     {
-        (*expression)->head = item;
-        free(op1);
-        item->previous = NULL;
-        item->next = op2->next;
-        free(op2);
-    }
-    if(op2->next == NULL)
-    {
-        op1->previous->next = item;
-        item->previous = op1->previous;
-        item->next = op2->next;
-        free(op2);
+        if (op1->previous == NULL)
+        {
+            (*expression)->head = item;
+            free(op1);
+            item->previous = NULL;
+            item->next = op2->next;
+            free(op2);
+        }
+        if (op2->next == NULL)
+        {
+            op1->previous->next = item;
+            item->previous = op1->previous;
+            item->next = op2->next;
+            free(op2);
+        }
     }
 }
 
