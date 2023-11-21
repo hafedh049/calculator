@@ -121,6 +121,19 @@ int isNumber(char *num)
 
 isValidInfixExpression(LinkedList *expression)
 {
+
+    LinkedListNode *prev = NULL, *current = expression->head;
+
+    while (current)
+    {
+        prev = current;
+        current = current->next;
+        if()
+            return 0;
+    }
+    
+    return 1;
+
     int operandCount = 0;
     int operatorCount = 0;
     int length = strlen(expression);
