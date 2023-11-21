@@ -119,7 +119,7 @@ int isNumber(char *num)
     return 1;
 }
 
-isValidInfixExpression(LinkedList *expression)
+int isValidInfixExpression(LinkedList *expression)
 {
 
     LinkedListNode *prev = NULL, *current = expression->head;
