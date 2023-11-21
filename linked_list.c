@@ -102,22 +102,6 @@ LinkedListNode *getLastLinkedList(LinkedList list)
     return node;
 }
 
-char *getLinkedList(LinkedList *list, int index)
-{
-    assert(!isEmptyLinkedList(*list));
-    int counter = -1;
-    LinkedListNode *head = list->head;
-    while (head)
-    {
-        counter++;
-        if (counter == index)
-            break;
-        head = head->next;
-    }
-    assert(counter == index);
-    return head->data;
-}
-
 LinkedListNode *getLinkedListNode(LinkedList *list, int index)
 {
     assert(!isEmptyLinkedList(*list));
@@ -140,10 +124,10 @@ char *toString(LinkedList *list)
         return "";
 
     char *result = NULL;
-    size_t resultSize = 0;
+    int resultSize = 0;
 
     LinkedListNode *current = list->head;
-    
+
     while (current != NULL)
     {
         size_t dataSize = strlen(current->data);
