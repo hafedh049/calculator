@@ -181,9 +181,8 @@ int *getMaxWeight(LinkedList *expression){
 }
 
 void updateState(LinkedList *expression, int targetIndx){
-
-
-
+    LinkedListNode *item = getLinkedListNode(expression,targetIndx);
+    
 }
 
 char *calculateResult(LinkedList *expression){
