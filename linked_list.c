@@ -143,6 +143,7 @@ char *toString(LinkedList *list)
     size_t resultSize = 0;
 
     LinkedListNode *current = list->head;
+    
     while (current != NULL)
     {
         size_t dataSize = strlen(current->data);
