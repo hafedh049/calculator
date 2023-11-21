@@ -16,20 +16,7 @@ typedef struct
 
 GtkWidget *box;
 
-#define SIZE 10
-
-char input_buffer[100] = {0};
-char output_buffer[100] = {0};
-
-bool clear_buffer = false;
-bool add = false;
-bool mul = false;
-bool divv = false;
-bool sub = false;
-
-float result = 0.0;
-static float num[SIZE];
-int count = 0;
+LinkedList *holder;
 
 static void calculate(GtkButton *button, gpointer data)
 {
@@ -38,27 +25,16 @@ static void calculate(GtkButton *button, gpointer data)
 
 	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("=", text))
 	{
-
-		num[count] = atof(input_buffer);
-		count++;
-		clear_buffer = true;
-
 		if (strcmp("+", text) == 0)
-		{
-			add = true;
-		}
+			appendLinkedList(holder,"+");
 		if (strcmp("-", text) == 0)
 		{
-			sub = true;
+			//
 		}
 		if (strcmp("/", text) == 0)
-		{
-			divv = true;
-		}
+			appendLinkedList(holder,"/");
 		if (strcmp("x", text) == 0)
-		{
-			mul = true;
-		}
+			appendLinkedList(holder,"*");
 	}
 
 	if (strcmp("=", text) == 0)
@@ -221,6 +197,8 @@ static void activate(GtkApplication *app, gpointer user_data)
 
 int main(int argc, char **argv)
 {
+	holder = createLinkedList();
+
 	GtkApplication *app;
 
 	gtk_init();
