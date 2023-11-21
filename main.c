@@ -1,5 +1,5 @@
 
-/*#include <gtk/gtk.h>
+#include <gtk/gtk.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -231,13 +231,13 @@ int main(int argc, char **argv)
 	g_object_unref(app);
 
 	return status;
-}*/
+}
 
 #include "linked_list.c"
 
 void main() {
 	LinkedList *l = createLinkedList();
-	appendAllLinkedList(l,3,"-1","+","5");
+	appendAllLinkedList(l,3,"1","*","0");
 	showLinkedList(*l);
 	printf("%s\n",calculateResult(l));
 }

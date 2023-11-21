@@ -268,7 +268,6 @@ char *calculateResult(LinkedList *expression)
     {
 
         int *aux = getMaxWeight(tmp);
-        printf("%d\n",*(aux +1));
 
         while (*(aux + 1) > 1)
         {
@@ -290,8 +289,6 @@ char *calculateResult(LinkedList *expression)
             
             head = head->next;
         }
-
-        printf("%s\n",peekStack(*operandStack));
 
         free(tmp);
 
