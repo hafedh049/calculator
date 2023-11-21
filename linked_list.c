@@ -254,20 +254,25 @@ void updateState(LinkedList **expression, int targetIndx)
 
 char *calculateResult(LinkedList *expression)
 {
-    if (isValidInfixExpression(expression))
+
+    LinkedList *tmp = expression;
+
+    if (isValidInfixExpression(tmp))
     {
 
         double result = 0;
 
-        int *aux = getMaxWeight(expression);
+        int *aux = getMaxWeight(tmp);
 
         while (*(aux + 1) > 1)
         {
-            updateState(expression,*aux);
-            aux = getMaxWeight(expression);
+            updateState(tmp,*aux);
+            aux = getMaxWeight(tmp);
         }
 
-        return;
+
+
+        return ;
     }
     else
         return "INVALID OPERATION";
