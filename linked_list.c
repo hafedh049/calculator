@@ -266,13 +266,50 @@ char *calculateResult(LinkedList *expression)
 
         while (*(aux + 1) > 1)
         {
-            updateState(tmp,*aux);
+            updateState(&tmp, *aux);
             aux = getMaxWeight(tmp);
         }
 
+        Stack *operandStack = createStack();
+        Stack *operatorStack = createStack();
 
+        LinkedListNode *head = tmp->head;
 
-        return ;
+        while (head)
+        {
+            if (isNumber(head->data))
+            {
+                pushStack(operandStack, operand);
+            }
+            else
+            {
+                push(operatorStack, expression[i]);
+                i++;
+            }
+        }
+
+        int result = pop(operandStack);
+        while (!isEmpty(operatorStack))
+        {
+            char op = pop(operatorStack);
+            int nextOperand = pop(operandStack);
+
+            if (op == '+')
+            {
+                result += nextOperand;
+            }
+            else if (op == '-')
+            {
+                result -= nextOperand;
+            }
+        }
+
+        free(operandStack->array);
+        free(operandStack);
+        free(operatorStack->array);
+        free(operatorStack);
+
+        return;
     }
     else
         return "INVALID OPERATION";
