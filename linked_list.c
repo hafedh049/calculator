@@ -130,7 +130,7 @@ int isNumber(char *num)
     if (num[0] == '-' && isdigit(num[1]))
         return 1;
 
-    return 0;
+    return 1;
 }
 
 int isValidInfixExpression(LinkedList *expression)
@@ -142,7 +142,7 @@ int isValidInfixExpression(LinkedList *expression)
     {
         prev = current;
         current = current->next;
-        
+
         if (isNumber(prev->data) && current == NULL)
             return 1;
         else if ((!isNumber(prev->data) && current == NULL) ||
