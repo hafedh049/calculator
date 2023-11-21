@@ -106,12 +106,12 @@ int isNumber(char *num)
     int i = 0;
     while (num[i])
     {
-        if (num[i] == '-' || num[i] == '+')
+        if (*(num + i) == '-' || *(num + i) == '+')
         {
             i += 1;
             continue;
         }
-        else if (!isdigit(num[i]))
+        else if (!isdigit(*(num + i)))
             return 0;
 
         i += 1;
