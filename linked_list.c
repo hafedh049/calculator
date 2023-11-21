@@ -147,14 +147,9 @@ char *toString(LinkedList *list)
     {
         size_t dataSize = strlen(current->data);
 
-        result = (char *)realloc(result, resultSize + dataSize + 1); // +1 for null terminator
-        if (result == NULL)
-        {
-            printf("Memory allocation failed");
-            exit(1);
-        }
+        result = (char *)realloc(result, resultSize + dataSize + 1);
 
-        strcpy(result + resultSize, current->data); // Append the current node's data to the result string
+        strcpy(result + resultSize, current->data);
         resultSize += dataSize;
 
         current = current->next;
