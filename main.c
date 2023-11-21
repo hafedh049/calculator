@@ -3,16 +3,15 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #include "linked_list.c"
 
-typedef struct
+typedef struct Calculator
 {
 	GtkWidget *window;
 	GtkWidget *grid;
 	GtkWidget *button[17];
-} calc;
+} Calculator;
 
 GtkWidget *box;
 
@@ -81,46 +80,17 @@ static void calculate(GtkButton *button, gpointer data)
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), output_buffer);
 		result = 0.0;
 	}
-	else
-	{
-		if (clear_buffer)
-		{
-			memset(input_buffer, 0, strlen(input_buffer));
-			clear_buffer = false;
-		}
-		else
-		{
-			strncat(input_buffer, text, 1);
-		}
-
-		strncat(output_buffer, text, 1);
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), output_buffer);
-	}
 
 	if (strcmp("C", text) == 0)
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
-		memset(input_buffer, 0, strlen(input_buffer));
-		memset(output_buffer, 0, strlen(output_buffer));
-
-		count = 0;
-		int x = sizeof(num) / sizeof(num[0]);
-
-		for (int i = 0; i < x; i++)
-		{
-			num[i] = 0;
-		}
-
-		add = false;
-		mul = false;
-		divv = false;
-		sub = false;
+		
 	}
 }
 
 static void activate(GtkApplication *app, gpointer user_data)
 {
-	calc widget;
+	Calculator widget;
 
 	widget.window = gtk_application_window_new(app);
 	gtk_window_set_title(GTK_WINDOW(widget.window), "Calculator");
