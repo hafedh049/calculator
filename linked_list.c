@@ -90,33 +90,16 @@ void clearLinkedList(LinkedList *list)
     list->head = NULL;
 }
 
-char *popLastLinkedList(LinkedList *list)
+char *getLast(DoublyLinkedList list)
 {
-    assert(!isEmpty(*list));
+    assert(!isEmpty(list));
 
-    Node *head = list->head;
+    Node *node = list.head;
 
-    char *result;
-
-    if (!head->next)
-    {
-        result = head->data;
-        free(head);
-        list->head = NULL;
+    while (node->next)
+        node = node->next;
         
-        return result;
-    }
-
-    while (head->next->next)
-        head = head->next;
-
-    result = head->next->data;
-
-    free(head->next);
-    
-    head->next = NULL;
-
-    return result;
+    return node->data;
 }
 
 char *getLinkedList(LinkedList *list, int index)
