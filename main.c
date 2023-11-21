@@ -239,6 +239,5 @@ void main() {
 	LinkedList *l = createLinkedList();
 	appendAllLinkedList(l,1,"-1");
 	showLinkedList(*l);
-	printf("%d\n",isValidInfixExpression(l));
-	printf("%s\n",);
+	printf("%s\n",calculateResult(l));
 }

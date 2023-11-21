@@ -261,8 +261,6 @@ char *calculateResult(LinkedList *expression)
     if (isValidInfixExpression(tmp))
     {
 
-        double result = 0;
-
         int *aux = getMaxWeight(tmp);
 
         while (*(aux + 1) > 1)
@@ -288,7 +286,8 @@ char *calculateResult(LinkedList *expression)
 
         free(tmp);
 
-        result = convertToDouble(popStack(operandStack));
+        double result = convertToDouble(popStack(operandStack));
+        
         while (!isEmptyStack(*operatorStack))
         {
             char *op = popStack(operatorStack);
@@ -306,7 +305,7 @@ char *calculateResult(LinkedList *expression)
         char *r;
 
         sprintf(r,"%.1f",result);
-
+        printf("%.2f",result);
         return r;
     }
     else
