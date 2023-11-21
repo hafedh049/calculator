@@ -94,7 +94,7 @@ LinkedListNode *getLastLinkedList(LinkedList list)
 {
     assert(!isEmptyLinkedList(list));
 
-    Node *node = list.head;
+    LinkedListNode *node = list.head;
 
     while (node->next)
         node = node->next;
