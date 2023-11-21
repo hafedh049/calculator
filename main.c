@@ -238,7 +238,7 @@ int main(int argc, char **argv)
 
 void main() {
 	LinkedList *l = createLinkedList();
-	appendAllLinkedist(l,1,"-1");
-	showLinkedist(*l);
+	appendAllLinkedList(l,1,"-1");
+	showLinkedList(*l);
 	printf("%d\n",isValidInfixExpression(l));
 }
