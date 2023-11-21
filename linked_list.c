@@ -125,27 +125,12 @@ isValidInfixExpression(LinkedList *expression)
     int operatorCount = 0;
     int length = strlen(expression);
 
-    LinkedListNode *head = expression->head;
-
-    while (head)
-    {
-        /* code */
-    }
-
     for (int i = 0; i < length; i++)
     {
-        if (isdigit(expression[i]))
-        {
+        if (isNumber(getLinkedist(expression, i)))
             operandCount++;
-            // Handle multi-digit operands
-            while (i < length && isdigit(expression[i]))
-            {
-                i++;
-            }
-            i--; // Adjust the index
-        }
-        else if (expression[i] == '+' || expression[i] == '-' ||
-                 expression[i] == '*' || expression[i] == '/')
+        else if (!strcmp(getLinkedist(expression, i), "+") || !strcmp(getLinkedist(expression, i), "-") ||
+                 !strcmp(getLinkedist(expression, i), "*") || !strcmp(getLinkedist(expression, i), "/"))
         {
             operatorCount++;
         }
