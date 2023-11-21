@@ -119,7 +119,7 @@ LinkedListNode *getLinkedListNode(LinkedList *list, int index)
 
 int isNumber(char *num)
 {
-    char* endPtr;
+    char *endPtr;
 
     strtod(num, &endPtr);
 
@@ -143,90 +143,107 @@ int isValidInfixExpression(LinkedList *expression)
         current = current->next;
 
         if (isNumber(prev->data) && current == NULL)
-            return 1; 
-        else if((!isNumber(prev->data) && current == NULL) || (isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
+            return 1;
+        else if ((!isNumber(prev->data) && current == NULL) || (isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
             return 0;
     }
-    
+
     return 1;
 }
 
-int *getMaxWeight(LinkedList *expression){
-    
-    int indx = 0,max = 0;
+int *getMaxWeight(LinkedList *expression)
+{
+
+    int indx = 0, max = 0;
     LinkedListNode *head = expression->head;
 
     int *aux = (int *)malloc(2 * sizeof(int));
 
     while (head)
     {
-        if(head->weight == 2)
+        if (head->weight == 2)
         {
             aux[0] = indx;
             aux[1] = 2;
             return aux;
         }
-            
-        else if(head->weight > max)
+
+        else if (head->weight > max)
             max = head->weight;
-        head = head->next;    
+        head = head->next;
     }
 
     aux[0] = indx;
-    aux[1] = max;        
+    aux[1] = max;
 
     return aux;
 }
 
-double convertToDouble(char* str) {
-    char* endPtr;
+double convertToDouble(char *str)
+{
+    char *endPtr;
     int isNegative = 0;
-    
-    if (*str == '-') {
+
+    if (*str == '-')
+    {
         isNegative = 1;
         str++;
     }
-    
+
     double result = strtod(str, &endPtr);
 
     return isNegative ? -result : result;
 }
 
-void updateState(LinkedList *expression, int targetIndx){
-    LinkedListNode *item = getLinkedListNode(expression,targetIndx);
+void updateState(LinkedList **expression, int targetIndx)
+{
+    LinkedListNode *item = getLinkedListNode(*expression, targetIndx);
 
     double res = 0;
 
-    if(!strcmp(item->data,"*"))
+    if (!strcmp(item->data, "*"))
         res = convertToDouble(item->previous->data) * convertToDouble(item->next->data);
     else
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
 
-    
-    
+    item->data = "";
+
+    sprintf(item->data, "%.1f", res);
+
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
 
-    if(op1){
-        
-    }else{
-        
+    if (op1->previous == NULL)
+    {
+        (*expression)->head = item;
+        free(op1);
+        item->previous = NULL;
+        item->next = op2->next;
+        free(op2);
     }
-
+    else
+    {
+        free(op1);
+        item->previous = NULL;
+        item->next = op2->next;
+        free(op2);
+    }
 }
 
-char *calculateResult(LinkedList *expression){
-    if(isValidInfixExpression(expression)){
+char *calculateResult(LinkedList *expression)
+{
+    if (isValidInfixExpression(expression))
+    {
 
         double result = 0;
 
         int *aux = getMaxWeight(expression);
 
-        while(*(aux + 1) > 1){
-
+        while (*(aux + 1) > 1)
+        {
         }
 
-        return ;
+        return;
     }
     else
         return "INVALID OPERATION";
