@@ -35,56 +35,15 @@ static void calculate(GtkButton *button, gpointer data)
 		if (strcmp("x", text) == 0)
 			appendLinkedList(holder,"*");
 	}
-
-	if (strcmp("=", text) == 0)
+	else if(strcmp("=", text) == 0)
 	{
-		int x = sizeof(num) / sizeof(num[0]);
-
-		if (add)
-		{
-			for (int i = 0; i < x; i++)
-			{
-				result += num[i];
-			}
-		}
-
-		if (divv)
-		{
-			result = num[0] / num[1];
-		}
-
-		if (sub)
-		{
-			if (result == 0.0)
-			{
-				result = num[0] * 2;
-			}
-			for (int i = 0; i < x; i++)
-			{
-				result -= num[i];
-			}
-		}
-
-		if (mul)
-		{
-			result = num[0] * num[1];
-		}
-
-		add = false;
-		mul = false;
-		divv = false;
-		sub = false;
-
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
-		sprintf(output_buffer, "%.3f", result);
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), output_buffer);
-		result = 0.0;
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), calculateResult(holder));
+		clearLinkedList(holder);
 	}
-
-	if (strcmp("C", text) == 0)
+	else if(strcmp("C", text) == 0)
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
-		
+		clearLinkedList(holder);
 	}
 }
 

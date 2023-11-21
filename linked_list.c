@@ -104,6 +104,19 @@ char *popLinkedList(LinkedList *list, char *item)
         return NULL;
 }
 
+void clearLinkedList(LinkedList *list) {
+    LinkedListNode* current = list->head;
+    LinkedListNode* next = NULL;
+
+    while (current != NULL) {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    list->head = NULL;
+}
+
 char *getLinkedList(LinkedList *list, int index)
 {
     assert(!isEmptyLinkedList(*list));
