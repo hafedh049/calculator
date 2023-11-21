@@ -203,7 +203,6 @@ void updateState(LinkedList *expression, int targetIndx){
 
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
-    
 }
 
 char *calculateResult(LinkedList *expression){
