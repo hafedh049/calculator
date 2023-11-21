@@ -19,9 +19,9 @@ typedef struct LinkedList
 } LinkedList;
 
 LinkedList *createLinkedList();
-void showLinkedist(LinkedList);
-void appendLinkedist(LinkedList *, char *);
-int isEmptyLinkedist(LinkedList);
-char *popLinkedist(LinkedList *, char *);
-char *getLinkedist(LinkedList *, int);
-void appendAllLinkedist(LinkedList *, int, ...);
+void showLinkedList(LinkedList);
+void appendLinkedList(LinkedList *, char *);
+int isEmptyLinkedList(LinkedList);
+char *popLinkedList(LinkedList *, char *);
+char *getLinkedList(LinkedList *, int);
+void appendAllLinkedList(LinkedList *, int, ...);
