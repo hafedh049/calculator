@@ -1,4 +1,5 @@
 #include "linked_list.h"
+#include "stack.c"
 #include "ctype.h"
 
 LinkedList *createLinkedList()
@@ -280,7 +281,7 @@ char *calculateResult(LinkedList *expression)
             if (isNumber(head->data))
                 pushStack(operandStack, head->data);
             else
-                push(operatorStack, head->data);
+                pushStack(operatorStack, head->data);
             
             head = head->next;
         }
@@ -288,7 +289,7 @@ char *calculateResult(LinkedList *expression)
         free(tmp);
 
         result = convertToDouble(popStack(operandStack));
-        while (!isEmpty(operatorStack))
+        while (!isEmptyStack(*operatorStack))
         {
             char *op = popStack(operatorStack);
             double nextOperand = convertToDouble(popStack(operandStack));
