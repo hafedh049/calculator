@@ -44,6 +44,7 @@ static void calculate(GtkButton *button, gpointer data)
 		clearLinkedList(holder);
 	}
 	else{
+		if(getl)
 		appendLinkedList(holder,text);
 	}
 }

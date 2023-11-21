@@ -22,7 +22,6 @@ LinkedList *createLinkedList();
 void showLinkedList(LinkedList);
 void appendLinkedList(LinkedList *, char *);
 int isEmptyLinkedList(LinkedList);
-char *popLinkedList(LinkedList *, char *);
-char *getLinkedList(LinkedList *, int);
+void clearLinkedList(LinkedList *);
 void appendAllLinkedList(LinkedList *, int, ...);
 char* toString(LinkedList*);
