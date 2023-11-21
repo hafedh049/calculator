@@ -20,7 +20,7 @@ LinkedList *holder;
 static void calculate(GtkButton *button, gpointer data)
 {
 
-	const gchar *text = gtk_button_get_label(button);
+	gchar *text = gtk_button_get_label(button);
 
 	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("=", text))
 	{
