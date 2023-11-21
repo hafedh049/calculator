@@ -119,20 +119,17 @@ LinkedListNode *getLinkedListNode(LinkedList *list, int index)
 
 int isNumber(char *num)
 {
-    int i = 0;
-    while (num[i])
-    {
-        if ( ((*(num + i) == '-') && (isdigit(*(num + i + 1)))))
-        {
-            i += 1;
-            continue;
-        }
-        else if (!isdigit(*(num + i)))
-            return 0;
+    char* endPtr;
+    
+    strtod(num, &endPtr);
 
-        i += 1;
-    }
-    return 1;
+    if (endPtr == num || *endPtr != '\0')
+        return 0;
+
+    if (num[0] == '-' && isdigit(num[1]))
+        return 1;
+
+    return 0;
 }
 
 int isValidInfixExpression(LinkedList *expression)
