@@ -60,7 +60,8 @@
     "*.java": "java",
     "assert.h": "c",
     "stdarg.h": "c",
-    "ctype.h": "c"
+    "ctype.h": "c",
+    "linked_list.h": "c"
   },
   "C_Cpp.default.compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe"
 }
