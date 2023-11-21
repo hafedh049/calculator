@@ -106,7 +106,7 @@ int isNumber(char *num)
     int i = 0;
     while (num[i])
     {
-        if (*(num + i) == '-' || *(num + i) == '+')
+        if ((*(num + i) == '-' || *(num + i) == '+') && (*(num + i + 1)))
         {
             i += 1;
             continue;
