@@ -1,3 +1,0 @@
-C:/Users/Dell/Desktop/calculator/build/CMakeFiles/TutorialApp.dir
-C:/Users/Dell/Desktop/calculator/build/CMakeFiles/edit_cache.dir
-C:/Users/Dell/Desktop/calculator/build/CMakeFiles/rebuild_cache.dir
