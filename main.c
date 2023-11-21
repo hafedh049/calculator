@@ -27,9 +27,7 @@ static void calculate(GtkButton *button, gpointer data)
 		if (strcmp("+", text) == 0)
 			appendLinkedList(holder,"+");
 		if (strcmp("-", text) == 0)
-		{
-			//
-		}
+			appendLinkedList(holder,"-");
 		if (strcmp("/", text) == 0)
 			appendLinkedList(holder,"/");
 		if (strcmp("x", text) == 0)
@@ -44,6 +42,9 @@ static void calculate(GtkButton *button, gpointer data)
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		clearLinkedList(holder);
+	}
+	else if(strcmp(".", text) == 0){
+
 	}
 }
 

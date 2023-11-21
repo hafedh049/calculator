@@ -74,36 +74,6 @@ void showLinkedList(LinkedList list)
     }
 }
 
-char *popLinkedList(LinkedList *list, char *item)
-{
-    assert(!isEmptyLinkedList(*list));
-
-    LinkedListNode *prev = NULL;
-    LinkedListNode *current = list->head;
-
-    while (current != NULL && strcmp(current->data, item) != 0)
-    {
-        prev = current;
-        current = current->next;
-    }
-
-    if (current != NULL)
-    {
-        char *value = current->data;
-
-        if (prev != NULL)
-            prev->next = current->next;
-        else
-            list->head = current->next;
-
-        free(current);
-        list->size -=1 ;
-        return value;
-    }
-    else
-        return NULL;
-}
-
 void clearLinkedList(LinkedList *list) {
     LinkedListNode* current = list->head;
     LinkedListNode* next = NULL;
