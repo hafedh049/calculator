@@ -7,6 +7,7 @@
 typedef struct LinkedListNode
 {
     char *data;
+    int weight;
     struct LinkedListNode *next;
     struct LinkedListNode *previous;
 } LinkedListNode;

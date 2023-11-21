@@ -136,3 +136,11 @@ int isValidInfixExpression(LinkedList *expression)
     
     return 1;
 }
+
+char *calculateResult(LinkedList *expression){
+    if(isValidInfixExpression(expression)){
+        
+    }
+    else
+        return "INVALID OPERATION"
+}
