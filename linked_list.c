@@ -293,16 +293,20 @@ char *calculateResult(LinkedList *expression)
             char *op = popStack(operatorStack);
             double nextOperand = convertToDouble(popStack(operandStack));
 
-            if (op == '+')
+            if (!strcmp(op,"+"))
                 result += nextOperand;
-            else if (op == '-')
+            else if (!strcmp(op,"-"))
                 result -= nextOperand;
         }
 
         free(operandStack);
         free(operatorStack);
 
-        return;
+        char *r;
+
+        sprintf(r,"%.1f",result);
+
+        return r;
     }
     else
         return "INVALID OPERATION";
