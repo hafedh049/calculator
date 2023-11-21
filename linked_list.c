@@ -169,11 +169,11 @@ char *calculateResult(LinkedList *expression){
 
         double result = 0;
 
-        int *aux;
+        int *aux = getMaxWeight(expression);
 
-        do{
-            aux = getMaxWeight(expression);
-        }while(*(aux + 1) > 1);
+        while(*(aux + 1) > 1){
+            
+        }
 
         return ;
     }
