@@ -131,7 +131,7 @@ char *toString(LinkedList *list)
 
     while (current != NULL)
     {
-        size_t dataSize = strlen(current->data);
+        int dataSize = strlen(current->data);
 
         result = (char *)realloc(result, resultSize + dataSize + 1);
 

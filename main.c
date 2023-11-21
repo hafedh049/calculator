@@ -46,11 +46,12 @@ static void calculate(GtkButton *button, gpointer data)
 		clearLinkedList(holder);
 	}
 	else{
-		if(isNumber(getLastLinkedList(*holder)->data))
+		if(getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
 			strcat(getLastLinkedList(*holder)->data,text);
 		else
 			appendLinkedList(holder,text);
-		
+
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
 }
