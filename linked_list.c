@@ -103,18 +103,32 @@ char *getLinkedist(LinkedList *list, int index)
 int isValidExpressionLinkedList(LinkedList *expression) {
     int operandCount = 0;
     int operatorCount = 0;
+    int lastWasOperator = 1;
+
 
     LinkedListNode *head = expression->head;
 
-    while (head != NULL) {
+     while (head != NULL) {
         if (strcmp(head->data, "+") == 0 || strcmp(head->data, "-") == 0 ||
             strcmp(head->data, "*") == 0 || strcmp(head->data, "/") == 0) {
             operatorCount++;
-        } else 
+            lastWasOperator = 1;
+        } else {
+            // Check for unary minus
+            if ( '-' == head->data[0] && lastWasOperator) {
+                head = head->next;
+                if (head == NULL || !isdigit(head->data[0])) {
+                    return 0; // Unary minus without operand or non-digit operand
+                }
+            } else if (!isdigit(head->data[0])) {
+                return 0; // Non-digit operand
+            }
             operandCount++;
+            lastWasOperator = 0;
+        }
 
         head = head->next;
     }
 
-    return (operandCount == (2 * operatorCount + 1));
+    return (operandCount == (operatorCount + 1));
 }
