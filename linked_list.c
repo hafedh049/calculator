@@ -34,7 +34,8 @@ void appendLinkedList(LinkedList *list, char *item)
 {
     LinkedListNode *linkedListNode = (LinkedListNode *)malloc(sizeof(LinkedListNode));
     linkedListNode->data = item;
-    linkedListNode->weight = isNumber(item) ? 0 : strcmp(item,"+") || strcmp(item,"-") ? 1 : 2;
+    linkedListNode->weight = isNumber(item) ? 0 : strcmp(item, "+") || strcmp(item, "-") ? 1
+                                                                                         : 2;
     linkedListNode->next = NULL;
     if (isEmptyLinkedList(*list))
     {
@@ -74,17 +75,46 @@ void showLinkedList(LinkedList list)
     }
 }
 
-void clearLinkedList(LinkedList *list) {
-    LinkedListNode* current = list->head;
-    LinkedListNode* next = NULL;
+void clearLinkedList(LinkedList *list)
+{
+    LinkedListNode *current = list->head;
+    LinkedListNode *next = NULL;
 
-    while (current != NULL) {
+    while (current != NULL)
+    {
         next = current->next;
         free(current);
         current = next;
     }
 
     list->head = NULL;
+}
+
+int popLastLinkedList(LinkedList *list)
+{
+    assert(!isEmpty(*list));
+
+    Node *head = list->head;
+
+    int result;
+
+    if (!head->next)
+    {
+        result = head->data;
+        list->head = NULL;
+        free(head);
+        return result;
+    }
+
+    while (head->next->next)
+        head = head->next;
+
+    result = head->next->data;
+
+    free(head->next);
+    head->next = NULL;
+
+    return result;
 }
 
 char *getLinkedList(LinkedList *list, int index)
@@ -133,8 +163,7 @@ int isValidInfixExpression(LinkedList *expression)
             return 1;
         else if ((!isNumber(prev->data) && current == NULL) ||
                  (isNumber(prev->data) && isNumber(current->data)) ||
-                 ((!isNumber(prev->data) && !isNumber(current->data)))
-                )
+                 ((!isNumber(prev->data) && !isNumber(current->data))))
             return 0;
     }
 
@@ -269,7 +298,7 @@ char *calculateResult(LinkedList *expression)
                 pushStack(operandStack, head->data);
             else
                 pushStack(operatorStack, head->data);
-            
+
             head = head->next;
         }
 
@@ -282,9 +311,9 @@ char *calculateResult(LinkedList *expression)
             char *op = popStack(operatorStack);
             double nextOperand = convertToDouble(popStack(operandStack));
 
-            if (!strcmp(op,"+"))
+            if (!strcmp(op, "+"))
                 result += nextOperand;
-            else if (!strcmp(op,"-"))
+            else if (!strcmp(op, "-"))
                 result -= nextOperand;
         }
 
@@ -293,7 +322,7 @@ char *calculateResult(LinkedList *expression)
 
         char *r;
 
-        sprintf(r,"%.1f",result);
+        sprintf(r, "%.1f", result);
         return r;
     }
     else
