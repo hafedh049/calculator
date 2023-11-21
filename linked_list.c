@@ -9,17 +9,17 @@ LinkedList *createLinkedList()
     return linkedList;
 }
 
-int isEmptyLinkedist(LinkedList list)
+int isEmptyLinkedList(LinkedList list)
 {
     return list.head == NULL;
 }
 
-void appendLinkedist(LinkedList *list, char *item)
+void appendLinkedList(LinkedList *list, char *item)
 {
     LinkedListNode *linkedListNode = (LinkedListNode *)malloc(sizeof(LinkedListNode));
     linkedListNode->data = item;
     linkedListNode->next = NULL;
-    if (isEmptyLinkedist(*list))
+    if (isEmptyLinkedList(*list))
     {
         linkedListNode->previous = NULL;
         list->head = linkedListNode;
@@ -34,15 +34,15 @@ void appendLinkedist(LinkedList *list, char *item)
     }
 }
 
-void appendAllLinkedist(LinkedList *list, int itemCount, ...)
+void appendAllLinkedList(LinkedList *list, int itemCount, ...)
 {
     va_list args;
     va_start(args, itemCount);
     for (int index = 0; index < itemCount; index++)
-        appendLinkedist(list, va_arg(args, char *));
+        appendLinkedList(list, va_arg(args, char *));
 }
 
-void showLinkedist(LinkedList list)
+void showLinkedList(LinkedList list)
 {
     LinkedListNode *head = list.head;
     printf("\033[1;0m[");
@@ -56,9 +56,9 @@ void showLinkedist(LinkedList list)
     }
 }
 
-char *popLinkedist(LinkedList *list, char *item)
+char *popLinkedList(LinkedList *list, char *item)
 {
-    assert(!isEmptyLinkedist(*list));
+    assert(!isEmptyLinkedList(*list));
 
     LinkedListNode *prev = NULL;
     LinkedListNode *current = list->head;
@@ -85,9 +85,9 @@ char *popLinkedist(LinkedList *list, char *item)
         return NULL;
 }
 
-char *getLinkedist(LinkedList *list, int index)
+char *getLinkedList(LinkedList *list, int index)
 {
-    assert(!isEmptyLinkedist(*list));
+    assert(!isEmptyLinkedList(*list));
     int counter = -1;
     LinkedListNode *head = list->head;
     while (head)
@@ -164,6 +164,12 @@ int *getMaxWeight(LinkedList *expression){
     return aux;
 }
 
+void updateState(LinkedList *expression, int targetIndx){
+
+    
+
+}
+
 char *calculateResult(LinkedList *expression){
     if(isValidInfixExpression(expression)){
 
@@ -172,7 +178,7 @@ char *calculateResult(LinkedList *expression){
         int *aux = getMaxWeight(expression);
 
         while(*(aux + 1) > 1){
-            
+
         }
 
         return ;
