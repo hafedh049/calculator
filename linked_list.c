@@ -128,22 +128,11 @@ isValidInfixExpression(LinkedList *expression)
     {
         prev = current;
         current = current->next;
-        if()
+        if (isNumber(prev->data) && current == NULL)
+            return 1; 
+        else if((isNumber(prev->data) && isNumber(current->data)) || ((!isNumber(prev->data) && !isNumber(current->data))))
             return 0;
     }
     
     return 1;
-
-    int operandCount = 0;
-    int operatorCount = 0;
-    int length = strlen(expression);
-
-    for (int i = 0; i < length; i++)
-        if (isNumber(getLinkedist(expression, i)))
-            operandCount++;
-        else if (!strcmp(getLinkedist(expression, i), "+") || !strcmp(getLinkedist(expression, i), "-") ||
-                 !strcmp(getLinkedist(expression, i), "*") || !strcmp(getLinkedist(expression, i), "/"))
-            operatorCount++;
-
-    return operandCount == operatorCount + 1;
 }
