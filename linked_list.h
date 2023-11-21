@@ -24,4 +24,4 @@ void appendLinkedist(LinkedList *, char *);
 int isEmptyLinkedist(LinkedList);
 char *popLinkedist(LinkedList *, char *);
 char *getLinkedist(LinkedList *, int);
-void appendAllLinkedist(LinkedList *, int , ...);
+void appendAllLinkedist(LinkedList *, int, ...);
