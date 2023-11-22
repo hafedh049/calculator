@@ -271,7 +271,6 @@ char *calculateResult(LinkedList *expression)
 
     if (isValidInfixExpression(tmp))
     {
-
         int *aux = getMaxWeight(tmp);
 
         while (*(aux + 1) > 1)
@@ -313,10 +312,10 @@ char *calculateResult(LinkedList *expression)
         free(operandStack);
         free(operatorStack);
 
-        char *r = (char *)malloc(20 * sizeof(char));
+        char *r  = (char *)malloc(20 * sizeof(char));
 
         sprintf(r, "%.1f", result);
-        return r;
+        return r;//r;
     }
     else
         return "INVALID OPERATION";

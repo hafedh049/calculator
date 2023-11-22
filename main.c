@@ -1,13 +1,4 @@
-#include "linked_list.c"
-
-LinkedList *holder;
-
-void main(){
-	
-}
-
-
-/*#include <gtk/gtk.h>
+#include <gtk/gtk.h>
 
 #include "linked_list.c"
 
@@ -43,7 +34,7 @@ static void calculate(GtkButton *button, gpointer data)
 	else if(!strcmp("=", text))
 	{
 		char *res = calculateResult(holder);
-		//gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 		clearLinkedList(&holder);
 	}
 	else if(!strcmp("C", text))
@@ -141,4 +132,4 @@ int main(int argc, char **argv)
 	g_object_unref(app);
 
 	return status;
-}*/
+}
