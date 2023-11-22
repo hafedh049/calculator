@@ -136,6 +136,7 @@ char *toString(LinkedList *list)
         result = (char *)realloc(result, resultSize + dataSize + 1);
 
         strcpy(result + resultSize, current->data);
+        
         resultSize += dataSize;
 
         current = current->next;
