@@ -19,15 +19,15 @@ static void calculate(GtkButton *button, gpointer data)
 
 	gchar *text = gtk_button_get_label(button);
 
-	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text))
+	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("*", text))
 	{
-		if (strcmp("+", text) == 0)
+		if (!strcmp("+", text))
 			appendLinkedList(holder,"+");
-		else if (strcmp("-", text) == 0)
+		else if (!strcmp("-", text))
 			appendLinkedList(holder,"-");
-		else if (strcmp("/", text) == 0)
+		else if (!strcmp("/", text))
 			appendLinkedList(holder,"/");
-		else if (strcmp("x", text) == 0)
+		else if (!strcmp("x", text) || !strcmp("*", text))
 			appendLinkedList(holder,"*");
 
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
@@ -48,7 +48,6 @@ static void calculate(GtkButton *button, gpointer data)
 		else
 			appendLinkedList(holder,text);
 
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
 }
