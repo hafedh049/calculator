@@ -1,8 +1,52 @@
+#include "linked_list.c"
 
-#include <gtk/gtk.h>
+LinkedList *holder;
 
-#include <stdlib.h>
-#include <string.h>
+void main()
+{
+	char *text;
+	while (1)
+	{
+		text = scanf("%s", text);
+
+		if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text))
+		{
+			if (strcmp("+", text) == 0)
+				appendLinkedList(holder, "+");
+			else if (strcmp("-", text) == 0)
+				appendLinkedList(holder, "-");
+			else if (strcmp("/", text) == 0)
+				appendLinkedList(holder, "/");
+			else if (strcmp("x", text) == 0)
+				appendLinkedList(holder, "*");
+
+			printf("\"%s\"", toString(holder));
+		}
+		else if (!strcmp("=", text))
+		{
+			char *res = calculateResult(holder);
+			printf("\"%s\"", res);
+			clearLinkedList(holder);
+		}
+		else if (!strcmp("C", text))
+		{
+			printf("\"%s\"", "");
+			clearLinkedList(holder);
+		}
+		else
+		{
+			if (getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
+				strcat(getLastLinkedList(*holder)->data, text);
+			else
+				appendLinkedList(holder, text);
+
+			printf("\"%s\"", "");
+			printf("\"%s\"", toString(holder));
+		}
+	}
+}
+
+/*#include <gtk/gtk.h>
 
 #include "linked_list.c"
 
@@ -18,13 +62,13 @@ GtkWidget *box;
 LinkedList *holder;
 
 char* intToString(int num) {
-    int maxDigits = snprintf(NULL, 0, "%d", num);
+	int maxDigits = snprintf(NULL, 0, "%d", num);
 
-    char* str = (char*)malloc(maxDigits + 1);
+	char* str = (char*)malloc(maxDigits + 1);
 
-    sprintf(str, "%d", num);
+	sprintf(str, "%d", num);
 
-    return str;
+	return str;
 }
 
 static void calculate(GtkButton *button, gpointer data)
@@ -114,7 +158,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[0], 0, 5, 3, 1);
 	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[15], 3, 5, 1, 1);
 
-	
+
 	for(int i = 0; i <= 15 ;i++)
 		g_signal_connect(widget.button[i], "clicked", G_CALLBACK(calculate), NULL);
 
@@ -137,4 +181,4 @@ int main(int argc, char **argv)
 	g_object_unref(app);
 
 	return status;
-}
+}*/
