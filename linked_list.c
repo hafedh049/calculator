@@ -173,17 +173,17 @@ int *getMaxWeight(LinkedList *expression)
 
     int *aux = (int *)malloc(2 * sizeof(int));
 
+    int i = 0;
+
     while (head)
     {
-        if (head->weight == 2)
+        if (head->weight > max)
         {
-            aux[0] = indx;
-            aux[1] = 2;
-            return aux;
-        }
-
-        else if (head->weight > max)
             max = head->weight;
+            indx = i;
+        }
+        
+        i += 1;
         head = head->next;
     }
 
@@ -213,7 +213,7 @@ void updateState(LinkedList **expression, int targetIndx)
 {
     LinkedListNode *item = getLinkedListNode(*expression, targetIndx);
 
-    double res = 0;
+    double res;
 
     if (!strcmp(item->data, "*"))
         res = convertToDouble(item->previous->data) * convertToDouble(item->next->data);
