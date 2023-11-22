@@ -10,7 +10,7 @@ void main()
 		char *text = (char *)malloc(sizeof(char));
 		scanf("%s", text);
 
-		if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text))
+		if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("*", text))
 		{
 			if (strcmp("+", text) == 0)
 				appendLinkedList(holder, "+");
@@ -18,15 +18,14 @@ void main()
 				appendLinkedList(holder, "-");
 			else if (strcmp("/", text) == 0)
 				appendLinkedList(holder, "/");
-			else if (strcmp("x", text) == 0)
+			else if (!strcmp("x", text) || !strcmp("*", text))
 				appendLinkedList(holder, "*");
 
 			printf("\"%s\"\n", toString(holder));
 		}
 		else if (!strcmp("=", text))
 		{
-			char *res = calculateResult(holder);
-			printf("\"%s\"\n", res);
+			printf("\"%s\"\n", calculateResult(holder));
 			clearLinkedList(&holder);
 		}
 		else if (!strcmp("C", text))
@@ -43,6 +42,7 @@ void main()
 		
 			printf("\"%s\"\n", toString(holder));
 		}
+		showLinkedList(*holder);
 	}
 }
 
