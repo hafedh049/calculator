@@ -220,54 +220,50 @@ void updateState(LinkedList **expression, int targetIndx)
     else
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
 
-    showLinkedList(**expression);
-
-
-    item->data = "";
+    printf("%.1f\n",res);    
 
     sprintf(item->data, "%.1f", res);
+
+    showLinkedList(**expression);
 
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
 
+    LinkedListNode *newItem = (LinkedListNode *)malloc(sizeof(LinkedListNode));
+
     if (op1->previous == NULL && op2->next == NULL)
     {
-        item->next = NULL;
-        item->previous = NULL;
-        (*expression)->head = item;
-        free(op1);
-        free(op2);
+        newItem->next = NULL;
+        newItem->previous = NULL;
+        (*expression)->head = newItem;
     }
     else
     {
        
         if (op1->previous == NULL)
         {
-            (*expression)->head = item;
-            item->previous = NULL;
-            item->next = op2->next;
-            op2->next->previous = item;
-            free(op1);
-            free(op2);
+            (*expression)->head = newItem;
+            newItem->previous = NULL;
+            newItem->next = op2->next;
+            op2->next->previous = newItem;
         }
         else if (op2->next == NULL)
         {
-            op1->previous->next = item;
-            item->previous = op1->previous;
-            item->next = NULL;
-            free(op2);
-            free(op1);
+            op1->previous->next = newItem;
+            newItem->previous = op1->previous;
+            newItem->next = NULL;
         }
         else
         {
-            item->previous = op1->previous;
-            op1->previous->next = item;
-            item->next = op2->next;
-            op2->next->previous = item;
-            free(op2);
-            free(op1);
+            newItem->previous = op1->previous;
+            op1->previous->next = newItem;
+            newItem->next = op2->next;
+            op2->next->previous = newItem;
         }
     }
+    free(item);
+    free(op1);
+    free(op2);
 }
 
 char *calculateResult(LinkedList *expression)
