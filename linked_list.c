@@ -167,30 +167,31 @@ int isValidInfixExpression(LinkedList *expression)
 
 int *getMaxWeight(LinkedList *expression)
 {
+    int index = -1, maxWeight = 0;
+    int *result = (int *)malloc(2 * sizeof(int));
 
-    int indx = 0, max = 0;
-    LinkedListNode *head = expression->head;
+    LinkedListNode *current = expression->head;
+    int currentIndex = 0;
 
-    int *aux = (int *)malloc(2 * sizeof(int));
+    while (current != NULL) {
 
-    int i = 0;
-
-    while (head)
-    {
-        if (head->weight > max)
-        {
-            max = head->weight;
-            indx = i;
+        if (current->weight == 2) {
+            result[0] = currentIndex;
+            result[1] = 2;
+            return result;
+        } else if (current->weight > maxWeight) {
+            maxWeight = current->weight;
+            index = currentIndex;
         }
-        
-        i += 1;
-        head = head->next;
+
+        currentIndex++;
+        current = current->next;
     }
 
-    aux[0] = indx;
-    aux[1] = max;
+    result[0] = index;
+    result[1] = maxWeight;
 
-    return aux;
+    return result;
 }
 
 double convertToDouble(char *str)
