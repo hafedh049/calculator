@@ -34,13 +34,14 @@ static void calculate(GtkButton *button, gpointer data)
 	else if(!strcmp("=", text))
 	{
 		char *res = calculateResult(holder);
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 		clearLinkedList(&holder);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 	}
 	else if(!strcmp("C", text))
 	{
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		clearLinkedList(&holder);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
+		
 	}
 	else{
 		if(getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
