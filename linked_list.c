@@ -34,7 +34,7 @@ void appendLinkedList(LinkedList *list, char *item)
 {
     LinkedListNode *linkedListNode = (LinkedListNode *)malloc(sizeof(LinkedListNode));
     linkedListNode->data = item;
-    linkedListNode->weight = isNumber(item) ? 0 : strcmp(item, "+") || strcmp(item, "-") ? 1 : 2;
+    linkedListNode->weight = isNumber(item) ? 0 : !strcmp(item, "+") || !strcmp(item, "-") ? 1 : 2;
     linkedListNode->next = NULL;
     if (isEmptyLinkedList(*list))
     {
@@ -211,15 +211,17 @@ double convertToDouble(char *str)
 }
 
 void updateState(LinkedList **expression, int targetIndx)
-{
+{ 
     LinkedListNode *item = getLinkedListNode(*expression, targetIndx);
-
     double res;
 
     if (!strcmp(item->data, "*"))
         res = convertToDouble(item->previous->data) * convertToDouble(item->next->data);
     else
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
+
+    showLinkedList(**expression);
+
 
     item->data = "";
 
@@ -238,6 +240,7 @@ void updateState(LinkedList **expression, int targetIndx)
     }
     else
     {
+       
         if (op1->previous == NULL)
         {
             (*expression)->head = item;
@@ -265,7 +268,6 @@ void updateState(LinkedList **expression, int targetIndx)
             free(op1);
         }
     }
-    showLinkedList(**expression);
 }
 
 char *calculateResult(LinkedList *expression)

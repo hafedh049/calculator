@@ -42,7 +42,6 @@ void main()
 		
 			printf("\"%s\"\n", toString(holder));
 		}
-		showLinkedList(*holder);
 	}
 }
 
