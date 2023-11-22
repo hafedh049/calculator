@@ -226,7 +226,7 @@ void updateState(LinkedList **expression, int targetIndx)
     newItem->data = (char *)malloc(20 * sizeof(char));
     newItem->weight = 0;
 
-    sprintf(item->data, "%.1f", res);
+    sprintf(newItem->data, "%.1f", res);
 
     showLinkedList(**expression);
 
