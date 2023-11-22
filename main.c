@@ -32,7 +32,7 @@ static void calculate(GtkButton *button, gpointer data)
 
 	gchar *text = gtk_button_get_label(button);
 
-	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("=", text))
+	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text))
 	{
 		if (strcmp("+", text) == 0)
 			appendLinkedList(holder,"+");
