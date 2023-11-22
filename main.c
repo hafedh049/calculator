@@ -4,10 +4,10 @@ LinkedList *holder;
 
 void main()
 {
-	char *text;
+	char *text = (char *)malloc(sizeof(char));
 	while (1)
 	{
-		text = scanf("%s", text);
+		scanf("%s", text);
 
 		if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text))
 		{
