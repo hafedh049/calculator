@@ -34,7 +34,8 @@ static void calculate(GtkButton *button, gpointer data)
 	}
 	else if(!strcmp("=", text))
 	{
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), calculateResult(holder));
+		char *res = calculateResult(holder);
+		//gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 		clearLinkedList(&holder);
 	}
 	else if(!strcmp("C", text))
