@@ -313,7 +313,7 @@ char *calculateResult(LinkedList *expression)
         free(operandStack);
         free(operatorStack);
 
-        char *r = (char *)malloc(sizeof(char));
+        char *r = (char *)malloc(20 * sizeof(char));
 
         sprintf(r, "%.1f", result);
         return r;
