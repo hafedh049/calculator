@@ -14,16 +14,6 @@ GtkWidget *box;
 
 LinkedList *holder;
 
-char* intToString(int num) {
-	int maxDigits = snprintf(NULL, 0, "%d", num);
-
-	char* str = (char*)malloc(maxDigits + 1);
-
-	sprintf(str, "%d", num);
-
-	return str;
-}
-
 static void calculate(GtkButton *button, gpointer data)
 {
 
@@ -61,6 +51,16 @@ static void calculate(GtkButton *button, gpointer data)
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
+}
+
+char* intToString(int num) {
+	int maxDigits = snprintf(NULL, 0, "%d", num);
+
+	char* str = (char*)malloc(maxDigits + 1);
+
+	sprintf(str, "%d", num);
+
+	return str;
 }
 
 static void activate(GtkApplication *app, gpointer user_data)
