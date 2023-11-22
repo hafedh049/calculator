@@ -76,7 +76,7 @@ void showLinkedList(LinkedList list)
 
 void clearLinkedList(LinkedList **list)
 {
-    LinkedListNode *current = list->head;
+    LinkedListNode *current = (*list)->head;
     LinkedListNode *next = NULL;
 
     while (current != NULL)
@@ -86,7 +86,7 @@ void clearLinkedList(LinkedList **list)
         current = next;
     }
 
-    list->head = NULL;
+    (*list)->head = NULL;
 }
 
 LinkedListNode *getLastLinkedList(LinkedList list)
