@@ -220,7 +220,11 @@ void updateState(LinkedList **expression, int targetIndx)
     else
         res = convertToDouble(item->previous->data) / convertToDouble(item->next->data);
 
-    printf("%.1f\n",res);    
+    printf("%.1f\n",res);
+
+    LinkedListNode *newItem = (LinkedListNode *)malloc(sizeof(LinkedListNode));
+    newItem->data = (char *)malloc(20 * sizeof(char));
+    newItem->weight = 0;
 
     sprintf(item->data, "%.1f", res);
 
@@ -228,8 +232,6 @@ void updateState(LinkedList **expression, int targetIndx)
 
     LinkedListNode *op1 = item->previous;
     LinkedListNode *op2 = item->next;
-
-    LinkedListNode *newItem = (LinkedListNode *)malloc(sizeof(LinkedListNode));
 
     if (op1->previous == NULL && op2->next == NULL)
     {
