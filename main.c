@@ -1,51 +1,5 @@
-#include "linked_list.c"
 
-LinkedList *holder;
-
-void main()
-{
-	holder = createLinkedList();
-	while (1)
-	{
-		char *text = (char *)malloc(sizeof(char));
-		scanf("%s", text);
-
-		if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("*", text))
-		{
-			if (strcmp("+", text) == 0)
-				appendLinkedList(holder, "+");
-			else if (strcmp("-", text) == 0)
-				appendLinkedList(holder, "-");
-			else if (strcmp("/", text) == 0)
-				appendLinkedList(holder, "/");
-			else if (!strcmp("x", text) || !strcmp("*", text))
-				appendLinkedList(holder, "*");
-
-			printf("\"%s\"\n", toString(holder));
-		}
-		else if (!strcmp("=", text))
-		{
-			printf("\"%s\"\n", calculateResult(holder));
-			clearLinkedList(&holder);
-		}
-		else if (!strcmp("C", text))
-		{
-			printf("\"%s\"\n", "");
-			clearLinkedList(&holder);
-		}
-		else
-		{
-			if (getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
-				strcat(getLastLinkedList(*holder)->data, text);
-			else
-				appendLinkedList(holder, text);
-		
-			printf("\"%s\"\n", toString(holder));
-		}
-	}
-}
-
-/*#include <gtk/gtk.h>
+#include <gtk/gtk.h>
 
 #include "linked_list.c"
 
@@ -90,14 +44,13 @@ static void calculate(GtkButton *button, gpointer data)
 	}
 	else if(!strcmp("=", text))
 	{
-		char *res = calculateResult(holder);
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
-		clearLinkedList(holder);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), calculateResult(holder));
+		clearLinkedList(&holder);
 	}
 	else if(!strcmp("C", text))
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
-		clearLinkedList(holder);
+		clearLinkedList(&holder);
 	}
 	else{
 		if(getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
@@ -180,4 +133,4 @@ int main(int argc, char **argv)
 	g_object_unref(app);
 
 	return status;
-}*/
+}
