@@ -265,6 +265,7 @@ void updateState(LinkedList **expression, int targetIndx)
             free(op1);
         }
     }
+    showLinkedList(**expression);
 }
 
 char *calculateResult(LinkedList *expression)
