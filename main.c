@@ -21,42 +21,43 @@ static void calculate(GtkButton *button, gpointer data)
 	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("*", text))
 	{
 		if (!strcmp("+", text))
-			appendLinkedList(holder,"+");
+			appendLinkedList(holder, "+");
 		else if (!strcmp("-", text))
-			appendLinkedList(holder,"-");
+			appendLinkedList(holder, "-");
 		else if (!strcmp("/", text))
-			appendLinkedList(holder,"/");
+			appendLinkedList(holder, "/");
 		else if (!strcmp("x", text) || !strcmp("*", text))
-			appendLinkedList(holder,"*");
+			appendLinkedList(holder, "*");
 
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
-	else if(!strcmp("=", text))
+	else if (!strcmp("=", text))
 	{
 		char *res = calculateResult(holder);
 		clearLinkedList(&holder);
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 	}
-	else if(!strcmp("C", text))
+	else if (!strcmp("C", text))
 	{
 		clearLinkedList(&holder);
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
-		
 	}
-	else{
-		if(getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
-			strcat(getLastLinkedList(*holder)->data,text);
+	else
+	{
+		if (getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
+			strcat(getLastLinkedList(*holder)->data, text);
 		else
-			appendLinkedList(holder,text);
+			appendLinkedList(holder, text);
 
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
 	}
 }
 
-char* intToString(int num) {
+char *intToString(int num)
+{
 	int maxDigits = snprintf(NULL, 0, "%d", num);
 
-	char* str = (char*)malloc(maxDigits + 1);
+	char *str = (char *)malloc(maxDigits + 1);
 
 	sprintf(str, "%d", num);
 
@@ -77,7 +78,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 	box = gtk_entry_new();
 	gtk_editable_set_editable(GTK_EDITABLE(box), FALSE);
 
-	for(int i = 0; i <= 9 ;i++)
+	for (int i = 0; i <= 9; i++)
 		widget.button[i] = gtk_button_new_with_label(intToString(i));
 
 	widget.button[10] = gtk_button_new_with_label("+");
@@ -110,8 +111,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[0], 0, 5, 3, 1);
 	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[15], 3, 5, 1, 1);
 
-
-	for(int i = 0; i <= 15 ;i++)
+	for (int i = 0; i <= 15; i++)
 		g_signal_connect(widget.button[i], "clicked", G_CALLBACK(calculate), NULL);
 
 	gtk_window_present(GTK_WINDOW(widget.window));
