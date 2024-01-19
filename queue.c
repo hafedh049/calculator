@@ -8,7 +8,7 @@ Queue create()
     return queue;
 }
 
-void push(Queue *queue, int item)
+void push(Queue *queue, char item)
 {
     Node *new = (Node *)malloc(sizeof(Node));
     new->data = item;
@@ -27,18 +27,18 @@ int empty(Queue queue)
 
 char pop(Queue *queue)
 {
-    assert(!isEmpty(*queue));
+    assert(!empty(*queue));
+
+    char data = queue->head->data;
 
     if (queue->head == queue->tail)
     {
-        char data = queue->head->data;
         free(queue->head);
         queue->head = NULL;
         queue->tail = NULL;
     }
     else
     {
-        char data = queue->head->data;
         Node *headReference = queue->head;
         queue->head = queue->head->next;
         free(headReference);

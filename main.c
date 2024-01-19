@@ -13,7 +13,7 @@ GtkWidget *box;
 
 void calculate(GtkButton *button, gpointer data)
 {
-	gchar *text = gtk_button_get_label(button);
+	const gchar *text = gtk_button_get_label(button);
 
 	if (!strcmp("=", text))
 	{
@@ -46,7 +46,7 @@ void activate(GtkApplication *app, gpointer user_data)
 	{
 		widget.buttons[index] = gtk_button_new_with_label(labels[index]);
 		g_signal_connect(widget.buttons[index], "clicked", G_CALLBACK(calculate), NULL);
-		gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[index], positions[0], positions[1], positions[2], positions[3]);
+		gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[index], positions[index][0], positions[index][1], positions[index][2], positions[index][3]);
 	}
 
 	gtk_window_present(GTK_WINDOW(widget.window));

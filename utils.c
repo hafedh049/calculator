@@ -1,4 +1,4 @@
-#include "stack.c"
+#include "queue.c"
 
 const char *labels[16] = {
     "0",
@@ -38,19 +38,19 @@ const int positions[16][4] = {
     {0, 0, 0, 0},
 };
 
-char *evaluateInfixExpression(char *infix)
+char *compute(const char *expression)
 {
-    Node *operandQueue;
-    Node *operatorQueue;
+    Queue operandQueue = create();
+    Queue operatorQueue = create();
 
-    while (*infix != '\0')
+    while (*expression != '\0')
     {
-        if (isdigit(*infix))
-            push(&operandQueue, *infix);
+        if (isdigit(*expression))
+            push(&operandQueue, *expression);
         else
-            push(&operatorQueue, *infix);
+            push(&operatorQueue, *expression);
 
-        infix++;
+        expression++;
     }
 
     float result = 0;
