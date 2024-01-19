@@ -1,41 +1,38 @@
 #include "stack.h"
 
-Stack* createStack()
+Node *create()
 {
-    Stack *stack = (Stack*)malloc(sizeof(Stack));
-    stack->head = NULL;
-    return stack;
+    return NULL;
 }
 
-void pushStack(Stack *stack, char *item)
+void push(Node **stack, char *item)
 {
-    StackNode *newStackNode = (StackNode *)malloc(sizeof(StackNode));
-    
-    newStackNode->data = item;
-    newStackNode->next = stack->head;
-    stack->head = newStackNode;
+    Node *new = (Node *)malloc(sizeof(Node));
+    new->data = item;
+    new->next = *stack;
+    *stack = new;
 }
 
-int isEmptyStack(Stack stack)
+int isEmpty(Node *stack)
 {
-    return stack.head == NULL;
+    return stack == NULL;
 }
 
-char *popStack(Stack *stack)
+char *pop(Stack *stack)
 {
     assert(!isEmptyStack(*stack));
 
     StackNode *headReference = (*stack).head;
-    
+
     (*stack).head = (*stack).head->next;
-    
+
     StackNode *popedStackNode = (StackNode *)malloc(sizeof(StackNode));
-    
+
     popedStackNode->data = headReference->data;
     popedStackNode->next = NULL;
-    
+
     free(headReference);
-    
+
     return popedStackNode->data;
 }
 

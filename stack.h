@@ -2,21 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct StackNode
+typedef struct Node
 {
     char *data;
-    struct StackNode *next;
-} StackNode;
-
-typedef struct Stack
-{
-    StackNode *head;
-} Stack;
+    struct Node *next;
+} Node;
 
 Stack *createStack();
-int isEmptyStack(Stack);
-void pushStack(Stack *, char *);
-char *popStack(Stack *);
-void showStack(Stack);
-void clearStack(Stack *);
-char *peekStack(Stack);
+int isEmptyStack(Node *);
+void pushStack(Node **, char *);
+char *popStack(Node **);
+void showStack(Node *);
+void clearStack(Node *);
+char *peekStack(Node *);
