@@ -6,10 +6,12 @@ typedef struct Calculator
 {
 	GtkWidget *window;
 	GtkWidget *grid;
-	GtkWidget *buttons[16];
+	GtkWidget *buttons[14];
 } Calculator;
 
 GtkWidget *box;
+
+char *input = "";
 
 void calculate(GtkButton *button, gpointer data)
 {
@@ -18,12 +20,18 @@ void calculate(GtkButton *button, gpointer data)
 	if (!strcmp("=", text))
 	{
 		char *res = compute(gtk_entry_get_placeholder_text(GTK_ENTRY(box)));
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res == NULL ? "Error" : res);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 	}
 	else if (!strcmp("C", text))
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
+	{
+		input = "";
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), input);
+	}
 	else
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), text);
+	{
+		input = concatenate(input, text);
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), input);
+	}
 }
 
 void activate(GtkApplication *app, gpointer user_data)
@@ -42,7 +50,7 @@ void activate(GtkApplication *app, gpointer user_data)
 
 	gtk_grid_attach(GTK_GRID(widget.grid), box, 0, 0, 4, 1);
 
-	for (int index = 0; index < 16; index++)
+	for (int index = 0; index < 14; index++)
 	{
 		widget.buttons[index] = gtk_button_new_with_label(labels[index]);
 		g_signal_connect(widget.buttons[index], "clicked", G_CALLBACK(calculate), NULL);

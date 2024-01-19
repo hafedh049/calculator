@@ -1,6 +1,6 @@
 #include "queue.c"
 
-const char *labels[16] = {
+const char *labels[14] = {
     "0",
     "1",
     "2",
@@ -13,13 +13,11 @@ const char *labels[16] = {
     "9",
     "+",
     "-",
-    "x",
-    "/",
     "C",
     "=",
 };
 
-const int positions[16][4] = {
+const int positions[14][4] = {
     {0, 5, 3, 1},
     {0, 4, 1, 1},
     {1, 4, 1, 1},
@@ -30,48 +28,65 @@ const int positions[16][4] = {
     {0, 2, 1, 1},
     {1, 2, 1, 1},
     {2, 2, 1, 1},
-    {3, 4, 1, 1},
-    {3, 3, 1, 1},
-    {3, 2, 1, 1},
-    {3, 1, 1, 1},
+    {3, 1, 1, 2},
+    {3, 3, 1, 2},
     {0, 1, 3, 1},
-    {0, 0, 0, 0},
+    {3, 5, 1, 1},
 };
 
+// Function to check if a character is an operator (+, -, *, /)
+int isOperator(char ch)
+{
+    return ch == '+' || ch == '-' || ch == '*';
+}
+
+// Function to evaluate an expression using the Shunting Yard algorithm
 char *compute(const char *expression)
 {
-    Queue operandQueue = create();
-    Queue operatorQueue = create();
+    Queue plusQueue = create();
+    Queue minusQueue = create();
+
+    int result = 0;
 
     while (*expression != '\0')
     {
-        if (isdigit(*expression))
-            push(&operandQueue, *expression);
+        if (!isOperator(*expression))
+            push(&plusQueue, *expression - '0');
         else
-            push(&operatorQueue, *expression);
-
+        {
+            if (*expression == '-')
+            {
+                expression++;
+                int operand = *expression - '0';
+                push(&minusQueue, operand);
+            }
+        }
         expression++;
     }
 
-    float result = 0;
+    while (!empty(plusQueue))
+        result += pop(&plusQueue);
 
-    while (!empty(operatorQueue))
-    {
-        char operator= pop(&operatorQueue);
-        int operand2 = pop(&operandQueue) - '0';
-        int operand1 = pop(&operandQueue) - '0';
-        if (operator== '+')
-            result = operand1 + operand2;
-        if (operator== '-')
-            result = operand1 - operand2;
-        if (operator== '*')
-            result = operand1 * operand2;
-        else
-        {
-            if (operand2 == 0)
-                result = 0;
-            else
-                result = operand1 / operand2;
-        }
-    }
+    while (!empty(minusQueue))
+        result -= pop(&minusQueue);
+
+    char *target = (char *)malloc(sizeof(char) * ((int)log10(fabs(result)) + 1) + 1);
+
+    sprintf(target, "%d", result);
+    return target;
+}
+
+const char *concatenate(const char *str1, const char *str2)
+{
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+    int totalLength = len1 + len2;
+
+    char *result = (char *)malloc((totalLength + 1) * sizeof(char));
+
+    strcpy(result, str1);
+
+    strcat(result, str2);
+
+    return result;
 }
