@@ -1,18 +1,18 @@
 #include <gtk/gtk.h>
 #include "stack.c"
 
-typedef struct Calculator
-{
-	GtkWidget *window;
-	GtkWidget *grid;
-	GtkWidget *button[16];
-} Calculator;
-
 typedef struct Button
 {
 	GtkWidget *button;
 	char *text;
 } Button;
+
+typedef struct Calculator
+{
+	GtkWidget *window;
+	GtkWidget *grid;
+	Button buttons[16];
+} Calculator;
 
 GtkWidget *box;
 
@@ -61,41 +61,41 @@ void activate(GtkApplication *app, gpointer user_data)
 	box = gtk_entry_new();
 	gtk_editable_set_editable(GTK_EDITABLE(box), FALSE);
 
-	for (int i = 0; i <= 9; i++)
-		widget.button[i] = gtk_button_new_with_label(intToString(i));
-
-	widget.button[10] = gtk_button_new_with_label("+");
-	widget.button[11] = gtk_button_new_with_label("-");
-	widget.button[12] = gtk_button_new_with_label("x");
-	widget.button[13] = gtk_button_new_with_label("/");
-	widget.button[14] = gtk_button_new_with_label("C");
-	widget.button[15] = gtk_button_new_with_label("=");
-
 	gtk_grid_attach(GTK_GRID(widget.grid), box, 0, 0, 4, 1);
 
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[14], 0, 1, 3, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[13], 3, 1, 1, 1);
+	for (int i = 0; i <= 9; i++)
+		widget.buttons[i].button = gtk_button_new_with_label(intToString(i));
 
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[7], 0, 2, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[8], 1, 2, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[9], 2, 2, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[12], 3, 2, 1, 1);
+	widget.buttons[10].button = gtk_button_new_with_label("+");
+	widget.buttons[11].button = gtk_button_new_with_label("-");
+	widget.buttons[12].button = gtk_button_new_with_label("x");
+	widget.buttons[13].button = gtk_button_new_with_label("/");
+	widget.buttons[14].button = gtk_button_new_with_label("C");
+	widget.buttons[15].button = gtk_button_new_with_label("=");
 
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[4], 0, 3, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[5], 1, 3, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[6], 2, 3, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[11], 3, 3, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[14].button, 0, 1, 3, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[13].button, 3, 1, 1, 1);
 
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[1], 0, 4, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[2], 1, 4, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[3], 2, 4, 1, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[10], 3, 4, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[7].button, 0, 2, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[8].button, 1, 2, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[9].button, 2, 2, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[12].button, 3, 2, 1, 1);
 
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[0], 0, 5, 3, 1);
-	gtk_grid_attach(GTK_GRID(widget.grid), widget.button[15], 3, 5, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[4].button, 0, 3, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[5].button, 1, 3, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[6].button, 2, 3, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[11].button, 3, 3, 1, 1);
+
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[1].button, 0, 4, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[2].button, 1, 4, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[3].button, 2, 4, 1, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[10].button, 3, 4, 1, 1);
+
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[0].button, 0, 5, 3, 1);
+	gtk_grid_attach(GTK_GRID(widget.grid), widget.buttons[15].button, 3, 5, 1, 1);
 
 	for (int i = 0; i <= 15; i++)
-		g_signal_connect(widget.button[i], "clicked", G_CALLBACK(calculate), NULL);
+		g_signal_connect(widget.buttons[i].button, "clicked", G_CALLBACK(calculate), NULL);
 
 	gtk_window_present(GTK_WINDOW(widget.window));
 }
