@@ -1,4 +1,6 @@
-char *labels[16] = {
+#include "stack.c"
+
+const char *labels[16] = {
     "0",
     "1",
     "2",
@@ -17,7 +19,7 @@ char *labels[16] = {
     "=",
 };
 
-int positions[16][4] = {
+const int positions[16][4] = {
     {0, 5, 3, 1},
     {0, 4, 1, 1},
     {1, 4, 1, 1},
@@ -35,3 +37,7 @@ int positions[16][4] = {
     {0, 1, 3, 1},
     {0, 0, 0, 0},
 };
+
+char *compute(Node **stack)
+{
+}

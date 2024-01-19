@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include "stack.c"
+
 #include "utils.h"
 
 typedef struct Calculator
