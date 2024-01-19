@@ -1,7 +1,5 @@
 #include <gtk/gtk.h>
 
-#include "linked_list.c"
-
 typedef struct Calculator
 {
 	GtkWidget *window;
@@ -11,60 +9,27 @@ typedef struct Calculator
 
 GtkWidget *box;
 
-LinkedList *holder;
-
-static void calculate(GtkButton *button, gpointer data)
+void calculate(GtkButton *button, gpointer data)
 {
 
 	gchar *text = gtk_button_get_label(button);
 
-	if (!strcmp("+", text) || !strcmp("-", text) || !strcmp("/", text) || !strcmp("x", text) || !strcmp("*", text))
+	if (!strcmp("=", text))
 	{
-		if (!strcmp("+", text))
-			appendLinkedList(holder, "+");
-		else if (!strcmp("-", text))
-			appendLinkedList(holder, "-");
-		else if (!strcmp("/", text))
-			appendLinkedList(holder, "/");
-		else if (!strcmp("x", text) || !strcmp("*", text))
-			appendLinkedList(holder, "*");
-
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
-	}
-	else if (!strcmp("=", text))
-	{
-		char *res = calculateResult(holder);
-		clearLinkedList(&holder);
+		// Evaluate the expression using the stack
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res);
 	}
 	else if (!strcmp("C", text))
 	{
-		clearLinkedList(&holder);
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), "");
 	}
 	else
 	{
-		if (getLastLinkedList(*holder) && isNumber(getLastLinkedList(*holder)->data))
-			strcat(getLastLinkedList(*holder)->data, text);
-		else
-			appendLinkedList(holder, text);
-
-		gtk_entry_set_placeholder_text(GTK_ENTRY(box), toString(holder));
+		gtk_entry_set_placeholder_text(GTK_ENTRY(box), text);
 	}
 }
 
-char *intToString(int num)
-{
-	int maxDigits = snprintf(NULL, 0, "%d", num);
-
-	char *str = (char *)malloc(maxDigits + 1);
-
-	sprintf(str, "%d", num);
-
-	return str;
-}
-
-static void activate(GtkApplication *app, gpointer user_data)
+void activate(GtkApplication *app, gpointer user_data)
 {
 	Calculator widget;
 
@@ -119,17 +84,18 @@ static void activate(GtkApplication *app, gpointer user_data)
 
 int main(int argc, char **argv)
 {
-	holder = createLinkedList();
-
 	GtkApplication *app;
 
 	gtk_init();
 
 	int status;
+
 	app = gtk_application_new("org.gtk.calculator", G_APPLICATION_DEFAULT_FLAGS);
 
 	g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+
 	status = g_application_run(G_APPLICATION(app), argc, argv);
+
 	g_object_unref(app);
 
 	return status;
