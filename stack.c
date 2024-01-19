@@ -5,7 +5,7 @@ Node *create()
     return NULL;
 }
 
-void push(Node **stack, char *item)
+void push(Node **stack, char item)
 {
     Node *new = (Node *)malloc(sizeof(Node));
     new->data = item;
@@ -13,42 +13,34 @@ void push(Node **stack, char *item)
     *stack = new;
 }
 
-int isEmpty(Node *stack)
+int empty(Node *stack)
 {
     return stack == NULL;
 }
 
-char *pop(Stack *stack)
+char pop(Node **stack)
 {
-    assert(!isEmptyStack(*stack));
-
-    StackNode *headReference = (*stack).head;
-
-    (*stack).head = (*stack).head->next;
-
-    StackNode *popedStackNode = (StackNode *)malloc(sizeof(StackNode));
-
-    popedStackNode->data = headReference->data;
-    popedStackNode->next = NULL;
-
-    free(headReference);
-
-    return popedStackNode->data;
+    assert(!empty(*stack));
+    Node *head = *stack;
+    *stack = (*stack)->next;
+    char data = head->data;
+    free(head);
+    return data;
 }
 
-void clearStack(Stack *stack)
+void clear(Node **stack)
 {
-    StackNode *head;
-    while (stack->head)
+    Node *head;
+    while (*stack)
     {
-        head = stack->head;
-        stack->head = stack->head->next;
+        head = *stack;
+        *stack = (*stack)->next;
         free(head);
     }
 }
 
-char *peekStack(Stack stack)
+char peek(Node *stack)
 {
-    assert(!isEmptyStack(stack));
-    return stack.head->data;
+    assert(!empty(stack));
+    return stack->data;
 }

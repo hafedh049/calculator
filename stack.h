@@ -4,14 +4,14 @@
 
 typedef struct Node
 {
-    char *data;
+    char data;
     struct Node *next;
 } Node;
 
-Stack *createStack();
-int isEmptyStack(Node *);
-void pushStack(Node **, char *);
-char *popStack(Node **);
-void showStack(Node *);
-void clearStack(Node *);
-char *peekStack(Node *);
+Node *create();
+int empty(Node *);
+void push(Node **, char);
+char pop(Node **);
+void show(Node *);
+void clear(Node **);
+char peek(Node *);

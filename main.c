@@ -17,7 +17,7 @@ void calculate(GtkButton *button, gpointer data)
 
 	if (!strcmp("=", text))
 	{
-		char *res = ;
+		char *res = compute();
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), res == NULL ? "Error" : res);
 	}
 	else if (!strcmp("C", text))
