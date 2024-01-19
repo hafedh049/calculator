@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include "stack.c"
 
 typedef struct Calculator
 {
@@ -6,6 +7,12 @@ typedef struct Calculator
 	GtkWidget *grid;
 	GtkWidget *button[16];
 } Calculator;
+
+typedef struct Button
+{
+	GtkWidget *button;
+	char *text;
+} Button;
 
 GtkWidget *box;
 
@@ -27,6 +34,17 @@ void calculate(GtkButton *button, gpointer data)
 	{
 		gtk_entry_set_placeholder_text(GTK_ENTRY(box), text);
 	}
+}
+
+char *intToString(int num)
+{
+	int maxDigits = snprintf(NULL, 0, "%d", num);
+
+	char *str = (char *)malloc(maxDigits + 1);
+
+	sprintf(str, "%d", num);
+
+	return str;
 }
 
 void activate(GtkApplication *app, gpointer user_data)
