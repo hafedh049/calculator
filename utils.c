@@ -38,66 +38,40 @@ const int positions[16][4] = {
     {0, 0, 0, 0},
 };
 
-int isOperator(char ch)
+char *evaluateInfixExpression(char *infix)
 {
-    return ch == '+' || ch == '-' || ch == '*' || ch == '/';
-}
-
-int isDigit(char ch)
-{
-    return isdigit(ch);
-}
-
-char *evaluateInfixExpression(const char *infix)
-{
-    Node *operandStack;
-    Node *operatorStack;
+    Node *operandQueue;
+    Node *operatorQueue;
 
     while (*infix != '\0')
     {
         if (isdigit(*infix))
-        {
-            int operand = *infix;
-            push(&operandStack, operand); // Convert operand to char
-        }
-        else if (isOperator(*infix))
-            push(&operatorStack, *infix);
-        else if (*infix == '(')
-            push(&operatorStack, *infix);
-        else if (*infix == ')')
-        {
-            while (operatorStack.top != NULL && operatorStack.top->data != '(')
-            {
-                char operator= pop(&operatorStack);
-                char operand2 = pop(&operandStack);
-                char operand1 = pop(&operandStack);
-                char result[3];
-                result[0] = operand1;
-                result[1] = operator;
-                result[2] = operand2;
-                result[3] = '\0';
-                push(&operandStack, *result);
-            }
-            // Pop '(' from the operator stack
-            pop(&operatorStack);
-        }
+            push(&operandQueue, *infix);
+        else
+            push(&operatorQueue, *infix);
+
         infix++;
     }
 
-    // Process remaining operators in the stacks
-    while (operatorStack.top != NULL)
-    {
-        char operator= pop(&operatorStack);
-        char operand2 = pop(&operandStack);
-        char operand1 = pop(&operandStack);
-        char result[3];
-        result[0] = operand1;
-        result[1] = operator;
-        result[2] = operand2;
-        result[3] = '\0';
-        push(&operandStack, *result);
-    }
+    float result = 0;
 
-    // The final result is on the operand stack
-    return operandStack.top != NULL ? operandStack.top : NULL;
+    while (!empty(operatorQueue))
+    {
+        char operator= pop(&operatorQueue);
+        int operand2 = pop(&operandQueue) - '0';
+        int operand1 = pop(&operandQueue) - '0';
+        if (operator== '+')
+            result = operand1 + operand2;
+        if (operator== '-')
+            result = operand1 - operand2;
+        if (operator== '*')
+            result = operand1 * operand2;
+        else
+        {
+            if (operand2 == 0)
+                result = 0;
+            else
+                result = operand1 / operand2;
+        }
+    }
 }
